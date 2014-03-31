@@ -1,0 +1,345 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Lesson 5 - Data types and Games</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/lesson.css" />
+
+    <link rel="stylesheet" href="static/highlightjs/styles/default.css">
+    <script src="static/highlightjs/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <div class="level">5</div>
+      <div class="title">נתונים ונהנים</div>
+    </header>
+    <section class="level1 activity">
+      <h1>שלב 19: מה הקטע עם מידע ואובייקטים</h1>
+
+      <ol>
+        <li>
+          כמו שאמרנתי בשיעור הקודם, הבסיס לתכנות הוא מידע ופהפעולות שאנחנו עושים על מידע.
+          אז בחלק הראשון של השיעור של היום אנחנו נעשה סדר באיזה סוגי המידע יש בפייתון ואיזה פעולות אפשר לעשות עליהם.
+          בחלק השני של השיעור, תעשו פרוייקטים כדי לתרגל את כל מה שלמדנו.
+        </li>
+        <li>
+פיסות המידע שאנחנו עובדים איתם בפייתון נקראות אובייקטים.פיסות המידע שאנחנו עובדים איתם בפייתון נקראות אובייקטים.
+נתקלנו בינתיים בשלושה סוגי אובייקטים פשוטים בפייתון: מספרים, מילים ורשימות.
+        </li>
+        <li>
+סוג של מידע נקרא גם טיפוס וכדי לדעת מה הטיפוס של אובייקט בפייתון, אנחנו יכולים להשתמש בפונקציה <code>type()</code>
+
+          <pre class="sourceCode python"><code>type(42)</code></pre>
+          <pre class="sourceCode python"><code>type("Hello world")</code></pre>
+
+        </li>
+        <li>
+שימו לב שכשאנחנו שמים אובייקט במשתנה המידע לא משתנה בכלל. המשתנה הוא סתם שם שמצביע על האובייקט.
+אז כמו שבדקנו את הטיפוס של אובייקט קודם, אנחנו יכולים גם לבדוק מה הטיפוס של המידע שיש בתוך משתנה ונקבל את אותה התשובה:
+
+          <pre class="sourceCode python"><code>x = 42
+type(x)
+</code></pre>
+
+          <pre class="sourceCode python"><code>x = "Hello world"
+type(x)
+</code></pre>
+
+        </li>
+      </ol>
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 20: מספרים</h1>
+
+      <ol>
+        <li>
+מספרים הם כנראה האובייקטים הכי פשוטים ועליהם למדנו הכי הרבה בינתיים.
+יש מספרים שלמים כמו <code>2</code> (באנגלית integer או int) ויש מספרים עשרוניים כמו <code>2.4</code> (באנגלית floating point או float)
+
+          <pre class="sourceCode python"><code>print(type(2))
+print(type(2.4))
+</code></pre>
+        </li>
+        <li>
+מספרים בפייתון מתנהגים בצורה מאוד צפוייה וראינו כבר שאפשר לעשות עליהם את 4 פעולות החשבון חיבור, חיסור, כפל, וחילוק.
+חוץ מזה, יש עוד כמה פעולות פשוטות כגון העלאה בחזקה <code>**</code>
+חילוק בלי שארית (כך שנקבל תמיד מספר שלם) <code>//</code>
+ומציאת שארית <code>%</code>
+
+          <pre class="sourceCode python"><code>print(5 / 2)
+print(5 // 2)
+print(5 % 2)
+</code></pre>
+        </li>
+        <li>
+פעולות יותר מתקדמות על מספרים, כמו להוציא שורש אפשר לעשות באמצעות הספרייה <code>math</code>
+
+          <pre class="sourceCode python"><code>import math
+print(math.sqrt(3**2 + 4**2))
+</code></pre>
+        </li>
+      </ol>
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 21: מחרוזות</h1>
+
+      <ol>
+        <li>
+טיפוס הנתונים השני שלמדנו עליו הוא מילים של טקסט - מחרוזות (באנגלית string או str).
+מחרוזות הן בעצם רשימות של אותיות וסימנים (כמו סימן שאלה וסימן קריאה).
+אם אנחנו רוצים ליצור מחרוזת בקוד שלנו, אנחנו צריכים להקיף את הטקסט בגרשיים בודדים או בגרשיים כפולים. זה לא משנה מה נבחר, אבל זה צריך להיות אותו הדבר גם בהתחלה וגם בסוף.
+          <pre class="sourceCode python"><code>print(type("hello"))
+print(type('hi'))
+</code></pre>
+        </li>
+        <li>
+כמו שאתם זוכרים, אם מחברים שתי מחרוזות בעזרת סימן <code>+</code> מקבלים מחרוזת חדשה שהיא שילוב של שתיהן
+אחת אחרי השנייה וזה נקרא "שרשור" (כמו לעשות שרשרת, ובאנגלית concatenation)
+          <pre class="sourceCode python"><code>planet = "Earth"
+print("Hello " + planet)
+</code></pre>
+        </li>
+        <li>
+דרך אחרת, ולפעמים יותר נוחה, ליצור מחרוזת היא בעזרת סימן <code>%</code> בדרך כזאת:
+
+          <pre class="sourceCode python"><code>planet = "Earth"
+print("Hello %s! how are you?" % planet)
+</code></pre>
+כותבים את המחרוזת המלאה שרוצים לקבל ואיפה שנרצה להכניס משתנה שמים <code>%s</code>.
+אחרי זה שמים סימן <code>%</code> נוסף ואז את המשתנה שאותו רוצים להכניס.
+
+אפשר גם להשלים הרבה משתנים בתוך המחרוזת, אבל אז צריך להשתמש בסוגריים נוספים:
+          <pre class="sourceCode python"><code>planet = "Earth"
+greeting = "hello"
+question = "how are you"
+print("%s %s! %s?" % (greeting, planet, question))
+</code></pre>
+        </li>
+        <li>
+רוב טיפוסי האובייקטים בפייתון יודעים גם לעשות פעולות על עצמם (וזה בעצם למה אנחנו קוראים להם אובייקטים ולא סתם מידע).
+פעולות של אובייקטים זה נושא מתקדם שאנחנו נדבר עליו בשיעורים הבאים,
+אבל בינתיים שווה שתדעו שאפשר לשאול כל אובייקט מה הוא יודע לעשות בעזרת הפונקציה <code>dir</code>
+למשל, בואו נראה מה מחרוזות יודעות לעשות:
+          <pre class="sourceCode python"><code>planet = "mars"
+print(dir(planet))
+</code></pre>
+        </li>
+        <li>
+רוב הדברים שם הם מורכבים מדי בשבילנו כרגע, אבל יש כמה דברים פשוטים שמחרוזות יודעות לעשות, כמו למשל
+          <pre class="sourceCode python"><code>planet = "mars"
+print(planet)
+big_planet = planet.upper()
+print(big_planet)
+</code></pre>
+        </li>
+        <li>
+תנסו לראות אם יש שם עוד דברים פשוטים שיכולים להיות שימושיים לכם.
+בשביל לברר מה פעולה כלשהי עושה, אפשר לשאול את הפונקציה <code>help</code>:
+          <pre class="sourceCode python"><code>s = "hello world"
+print(s)
+print(help(s.title))
+print(s.title())
+</code></pre>
+        </li>
+      </ol>
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 22: רשימות</h1>
+
+      <ol>
+        <li>
+טיפוס הנתונים השלישי שלמדנו עליו בשיעורים הקודמים הוא רשימות.
+רשימה (list) זאת דרך לשים ביחד אובייקטים פשוטים רבים באובייקט גדול אחד.
+אפשר לעשות רשימות של מחרוזות ושל מספרים ושל כל מה שבא לכם.
+לדברים שאנחנו שמים בתוך רשימה, קוראים איברים.
+כל מה שצריך לעשות, זה לפתוח סוגריים מרובעים ולשים את מה שאתם רוצים בפנים.
+          <pre class="sourceCode python"><code>colors = ["black", "blue", "red"]
+triangle_sides = [3, 4, 5]
+</code></pre>
+        </li>
+        <li>
+כאשר רוצים אחרי זה לגשת לאיבר אחד מסויים מתוך רשימה, משתמשים שוב בסוגריים מרובעים ושמים בפנים את מספר האיבר:
+          <pre class="sourceCode python"><code>colors = ["black", "blue", "red"]
+print(colors[0])
+print(colors[1])
+print(colors[2])
+</code></pre>
+שימו לב שבפייתון (וגם ברוב שפות התכנות האחרות), מתחילים לספור מאפס, כך שבעצם איבר מספר 2 ברשימה שלנו הוא האיבר השלישי.
+        </li>
+        <li>
+
+שימו גם לב, שאם תנסו לגשת למספר איבר ברשימה שהוא מעבר לגודל הרשימה תקבלו שגיאה (למשל אם תנסו לגשת לאיבר מספר 7 ברשימה של 3 איברים).
+אם יש לנו רשימה שאנחנו לא יודעים כמה איברים יש לה (למשל אם קיבלנו אותה בקלט מהמשתמש), אפשר לשאול אותה מה האורך שלה בעזרת פונקציית <code>len</code>
+          <pre class="sourceCode python"><code>colors = ["black", "blue", "red"]
+print(len(colors))
+</code></pre>
+        </li>
+        <li>
+כמו שעשינו קודם, אם בא לכם לחפש בעצמכם מה רשימות יודעות לעשות, אתם יכולים לבדוק. אחד הדברים הנחמדים למשל, הוא מיון של הרשימה לפי הסדר:
+          <pre class="sourceCode python"><code>colors = ["black", "blue", "red", "green"]
+print(dir(colors))
+colors.sort()
+print(colors)
+</code></pre>
+        </li>
+        <li>
+בחלק הקודם, הזכרתי שמחרוזות הן רשימות של אותיות וסימנים אחרים. לא סתם אמרתי שהן רשימות.
+כל דבר שעושים עם רשימות, אפשר לעשות גם עם מחרוזות:
+          <pre class="sourceCode python"><code>my_string = "hello world"
+print(len(my_string))
+print(my_string[4])
+</code></pre>
+
+אם יש לנו אובייקט כזה שהוא כמו רשימה, אבל הוא לא בדיוק רשימה, אפשר להפוך אותו לרשימה ממש בעזרת <code>list</code>
+          <pre class="sourceCode python"><code>my_string = "hello world"
+print(list(my_string))
+</code></pre>
+        </li>
+        <li>
+אגב, משהו נחמד שאפשר לעשות עם מחרוזות ארוכות הוא לפצל אותן לרשימה של מילים:
+          <pre class="sourceCode python"><code>my_string = "hello world"
+print(my_string.split())
+</code></pre>
+        </li>
+      </ol>
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 23: אמת ושקר</h1>
+
+      <ol>
+        <li>
+ויש עוד טיפוס של אובייקט שהשתמשנו בו כשעשינו בדיקות <code>if</code> אבל לא דיברנו עליו - אמת ושקר (True / False).
+הטיפוס של אמת ושל שקר נקרא בוליאני (באנגלית boolean או bool) על שם מתמתיקאי אנגלי שנולד לפני 200 שנה בשם ג'ורג' בול.
+זוכרים שקיבלנו קלט מהמשתמש ושאלנו למה הוא שווה:
+          <pre class="sourceCode python"><code>name = input("what's your name")
+if name == "Yoni":
+    print("Oh, it's you")
+else:
+    print("Hi %s" % name)
+</code></pre>
+        </li>
+        <li>
+אז בעצם, כשאנחנו שואלים האם השם הוא יוני, פייתון בודק ומחליט האם זה אמת או שקר.
+אפשר לראות את זה יותר טוב, אם נוציא את הבדיקה לשורה נפרדת:
+          <pre class="sourceCode python"><code>name = input("what's your name? ")
+its_yoni = (name == "Yoni")
+print(its_yoni)
+print(type(its_yoni))
+if its_yoni:
+    print("Oh, it's you")
+else:
+    print("Hi %s" % name)
+</code></pre>
+        </li>
+        <li>
+יש הרבה דברים שאנחנו יכולים לעשות בפייתון  בשביל לקבל תשובות של אמת או שקר.
+למשל במספרים, אנחנו יכולים לבדוק שוויון, אי-שוויון ולהשוות גודל:
+          <pre class="sourceCode python"><code>a = 3
+b = 5
+print(a == b)
+print(a != b)
+print(a < b)
+print(a > b)
+print(a <= b)
+print(a >= b)
+</code></pre>
+        </li>
+        <li>
+במחרוזות, למשל, שימושי לבדוק האם מחרוזת קטנה מופיעה בתוך מחרוזת גדולה בעזרת <code>in</code>:
+          <pre class="sourceCode python"><code>my_string = "hello big world"
+if "big" in my_string:
+    print("the world is so big")
+</code></pre>
+        </li>
+      </ol>
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 23: לולאות</h1>
+      <p> יש בפייתון שני סוגים של לולאות ולמדנו קצת על שתהין ועכשיו נדבר קצת יותר לעומק.</p>
+      <ol>
+        <li>
+ הלולאה היותר פשוטה היא <code>while</code>.
+ הלולאה הזאת בודקת ערך כלשהו של אמת או שקר וממשיכה לרוץ כל עוד שזה יוצא אמת.
+ בשיעור הקודם עשינו <code>while True</code> בכוונה בשביל שהיא תרוץ תמיד (עד שנעשה <code>break</code>) אבל הרבה פעמים נרצה שהלולאה תפסיק בעצמה מבלי שצריך לשבור אותה מבפנים:
+
+          <pre class="sourceCode python"><code>number = 0
+while number < 10000:
+    number = input("Give me a big number: ")
+
+print("Thank you, %s is good enough for me" % number)
+</code></pre>
+        </li>
+        <li>
+הלולאה האחרת שלמדנו עליה היא <code>for</code>.
+הלולאה הזאת מקבלת רשימה (או משהו שהוא כמו רשימה) ורצה םען אחת על כל אחד מהאיברים ברשימה.
+          <pre class="sourceCode python"><code>numbers = [42, 7, 1337, 1729]
+for i in numbers:
+    print("I love %s, it's such a great number" % i)
+</code></pre>
+אנחנו צריכים לתת ללולאה שם כלשהו של משתנה (שלא צריך להיות קיים מקודם), במקרה הזה <code>i</code> (אבל זה יכול להיות כל שם) ובכל פעם שהלולאה רצה המשתנה הזה מקבל את המספר הבא.
+        </li>
+        <li>
+אם לא מעניין אותנו לעבור על רשימה, אלא סתם רוצים שהלולאה תקוץ כמה פעמים, אנחנו משתמשים ב <code>range</code>. וזה מה שעשינו בשיעורים הקודמים.
+לדוגמא, <code>range(7)</code> מייצרת מעין רשימה (לא בדיוק אבל בערך) של 7 מספרים החל מ-0:
+          <pre class="sourceCode python"><code>numbers = range(7)
+print(list(numbers))
+for num in numbers:
+    print("I love ranges")
+</code></pre>
+
+        </li>
+      </ol>
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 24: בונים משחק</h1>
+
+      <p>זהו, עכשיו בחלק השני של השיעור, אני רוצה שתתחלקו לזוגות או שלשות ותעשו פרוייקטים קטנים עם החומר שלמדנו.</p>
+      <ul>
+        <li>
+        </li>
+      </ul>
+    </section>
+
+
+
+
+
+
+
+אני רוצה שכל קבוצה תבנה משחק פשוט ומגניב.
+הנה כמה רעיונות למשחקים, אבל אתם יכולים גם לקחת את זה לאן שאת רוצים ולעשות כל דבר אחר שבא לכם.
+אבל אתם חייבים לסיים את המשחק ולתת לי לשחק בו ולא נמשיך לנושא הבא עד שאני אשחק במשחק של כל אחד מהצוותים ואנצח :).
+
+guess the number - http://inventwithpython.com/chapter4.html ; make the range configurable ;  harder - say if it's warmer or colder than the last number
+hangman - http://projects.codeclubworld.org/en-GB/python.4/05/05.html
+turtle - be shown random shape and its name (calculate how much time)
+turtle - be shown random color and its name (calculate how much time)
+number simon - show a number digit by digit and ask the user to type it back in one more digit each time (clear screen after showing)
+turtle - find the treasure - if very close to treasure end game (show explosion?) else, say it warmer or colder by perhaps changing colors? ; what if there's more than 1 treasure?
+
+
+רמז, בשביל שבכל פעם שמפעילים את המשחק, נקבל חוייה שונה, שווה להשתמש בפונקציות שהכרנו מהספרייה random:
+<code>randint</code> ו- <code>choice</code>
+
+
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 20: ???</h1>
+    </section>
+
+  </body>
+</html>
