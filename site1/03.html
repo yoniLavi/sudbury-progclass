@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Lesson 3 - Mighty Random Turtle Powers</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/lesson.css" />
+    <link rel="stylesheet" href="static/css/python.css" />
+
+    <link rel="stylesheet" href="static/highlightjs/styles/default.css">
+    <script src="static/highlightjs/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <div class="level">3</div>
+      <div class="title">כח הצבים - חלק 3</div>
+    </header>
+    <section id="step-4-why-stop-at-squares" class="level1 activity">
+      <h1>שלב 10: למה דוקא ריבוע?</h1>
+      <p>לא סיימנו עדיין, למה שלא נשנה את הפונקציה ככה שתוכל לצייר כל צורה!</p>
+      <p>
+                בעצם כל הפעולות של turtle שהשתמשנו בהן הן פשוט פונקציות, וכמו עם הפעולה <code>forward</code> שמקבלת מספר כדי לדעת כמה לזוז,
+                גם אנחנו יכולים לגרום לפונקציות שלנו לקבל מספרים.
+</p>
+      <section id="activity-checklist-3" class="level2 check">
+        <ol>
+          <li>
+            <p>בואו נשנה את הקוד מהתרגיל הקודם בשביל שייראה כך:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+def poly(sides, length):
+    angle = 360/sides
+
+    for n in range(sides):
+            forward(length)
+            right(angle)
+
+pencolor('red')
+poly(4, 100)
+right(180)
+pencolor('blue')
+poly(3, 150)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>תריצו את הקוד ותנסו להבין מה קורה</p>
+            <p>
+                              בואו ניקח את זה לאט, כי זה באמת די מגניב.
+                              במקום שנגדיר את המשתנים בתוך הפונקציה, אמרנו לפונקציה שהיא תקבל מספרים מבחוץ בכל פעם שהיא רצה
+                              ותשים אותם בעצמה בתוך המשתנים <code>sides</code> ו-<code>length</code>.
+            </p>
+            <p>
+                              בעצם, לקחנו את ההגדרות של הצורה מתוך הפונקציה, החוצה לאיפה שמחליטים אשכרה לצייר את הצורה.
+                              ומה שיצא זה שאנחנו יכולים עכשיו באמצעות שורה אחת להחליט לצייר <em>כל</em> צורה שנרצה.
+                              די מגניב, לא? ככה אנחנו יכולים ללמד את המחשב טריקים מורכבים חדשים ואז לבקש ממנו לעשות אותם מתי שבא לנו ואיך שבא לנו.
+            </p>
+          </li>
+        </ol>
+        <p>היכולת הזאת להגדיר פונקציות שיכולות לעשות דברים קצת שונים בכל פעם בהתאם למה שאנחנו רוצים היא מרכיב מאוד מרכזי ואחד הדברים הכי חשובים בתכנות.</p>
+      </section>
+    </section>
+    <section id="step-6-dashing-shapes" class="level1 activity">
+      <h1>שלב 11: צורות מקווקוות</h1>
+      <section id="activity-checklist-5" class="level2 check">
+        <ol>
+          <li>
+            <p>בואו עכשיו נחזור לעניין הקווים המקווקוים שהתחלנו בשלב 8. תכתבו את הקוד הבא:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+length = 200
+for num in range(8):
+    forward(length/16)
+    penup()
+    forward(length/16)
+    pendown()
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>זה אמור לצייר קו מקווקו נחמד. תריצו ותוודאו שהכל סבבה.</p>
+          </li>
+          <li>
+            <p>
+                             עכשיו שאנחנו יודעים לעשות קווקווים, אנחנו יכולים לגרום לצב לעשות צורה שלמה מקווקוות במקום רק קו אחד.
+                             בואו ניקח את הקוד של <code>poly</code> מהשלב הקודם
+                             ונחליף את השורה של ה-<code dir="ltr">foreward</code> בקוד שעושה קווקווים.
+            </p>
+          </li>
+          <li>
+            <p>תזינו את הקוד הבא:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+def dashpoly(sides, length):
+    angle = 360/sides
+
+    for n in range(sides):
+        for num in range(8):
+            forward(length/16)
+            penup()
+            forward(length/16)
+            pendown()
+
+        right(angle)
+
+pencolor('red')
+dashpoly(4, 100)
+right(180)
+pencolor('blue')
+dashpoly(3, 150)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>תריצו את הקוד ותראו מה הוא עושה.</p>
+            <p>
+                             כמו שאמרנו קודם, יש לנו שתי לולאות, אחת בתוך השניה.
+                             הלולאה החיצונית <code dir="ltr">for n in range(sides)</code> אחראית לכך שנעשה את כל הצלעות של הצורה
+                             ועבור כל אחת מהצלעות היא מריצה את הלולאה הפנימית <code dir="ltr">for num in range(8)</code> שאחראית על הקווקווים.
+            </p>
+            <br>
+            <p>
+                             בשיעור שעבר אמרתי שעוד נדבר על איך עובדות לולאות, אז הנה, בואו נדבר קצת עכשיו ואני מבטיח שבשיעור הבא אסביר אפילו יותר.
+                             הטריק הוא כזה, כשאנחנו עושים לולאת <code>for</code>,
+                             פייתון צריך להשתמש במשתנה כלשהו בשביל לדעת באיזה צעד של הלולאה הוא נמצא עכשיו
+                             וזה התפקיד של המילה שכתובה אחרי <code>for</code>, זה השם של המשתנה שאנחנו בוחרים (ואפשר לבחור כל דבר שרוצים).
+            </p>
+            <p>
+                             בקוד שלנו, בלולאה החיצונית השתמשנו במשתנה n כדי לספור את הצלעות ובלולאה הפנימית השתמשנו במשתנה num כדי לספור את הקווקווים.
+                             כשעושים לולאה בתוך לולאה, חייבים לבחור בשמות משתנים שונים, אחרת פייתון יתבלבל (וכנראה גם אנחנו).</p>
+          </li>
+          <li>
+            <p>אני באמת מבטיח שנדבר עוד על לולאות בשיעור הבא, אבל אם בא לכם קצת לשחק עם המשתנה של הלולאה, תנסו להריץ את הקוד הזה:</p>
+            <pre class="sourceCode python"><code>for a_nice_number in range(8):
+    print(a_nice_number)
+</code></pre>
+          </li>
+          <li>
+                         כשתריצו, אתם אמורים לקבל שמונה שורות של מספרים על המסך. למה דוקא המספרים האלו? כי פייתון אוהב להתחיל מאפס.
+          </li>
+        </ol>
+      </section>
+    </section>
+    <section id="step-7-building-blocks-for-shapes" class="level1 activity">
+      <h1>שלב 12: אותו דבר אבל פשוט יותר</h1>
+      <section id="activity-checklist-6" class="level2 check">
+        <ol>
+          <li>
+            <p>בואו נשתמש בפונקציות בשביל לפשט את זה עוד יותר.
+אנחנו ניקח את הקוד של התוכנה הקודמת ונפרק אותו לשתי פונקציות (אחת שמשתמשת בשנייה) כך שהוא יהיה יותר ברור.</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+def dashforward(length):
+    for num in range(8):
+        forward(length/16)
+        penup()
+        forward(length/16)
+        pendown()
+
+def dashpoly(sides, length):
+    angle = 360/sides
+    for n in range(sides):
+        dashforward(length)
+        right(angle)
+
+pencolor('red')
+dashpoly(4, 100)
+right(180)
+pencolor('blue')
+dashpoly(3, 150)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>תריצו את הקוד ואתם אמורים לקבל בדיוק אותו הדבר.</p>
+          </li>
+        </ol>
+        <section id="protip" class="level3 protip">
+          <h3>טיפ:</h3>
+          <p>מה שעשינו עכשיו נקרא ריפקטורינג (Refactoring) - התהליך שבו משנים את הקוד כך שיהיה פשוט יותר, ברור יותר ונח יותר לעבודה מבלי לשנות את מה שהוא עושה.
+כשכותבים תוכניות גדולות, שווה מאוד להשקיע את הזמן כדי לנסות להבין אם יש דברים שאפשר לפשט ובפרט אם אפשר להוציא רכיבים לפונקציות מסודרות. אם לא עושים את זה, אז בשלב מסויים, הקוד הופך להיות כל-כך מורכב שכמעט ואי-אפשר לעבוד עליו.
+</p>
+        </section>
+      </section>
+    </section>
+    <section id="step-8-a-little-bit-random" class="level1 activity">
+      <h1>שלב 13: קצת אקראיות</h1>
+      <p>
+                עכשיו שלב בונוס לקראת סיום השיעור, בואו ננסה להוסיף קצת אקראיות בשביל שכל פעם שנריץ את התוכנה שלנו יקרה משהו אחר ומפתיע.
+                אנחנו יכולים לבקש מהמחשב להגריל מספר בשבילנו או לבחור בשבילנו צבע - זה קצת כמו לזרוק קובייה.</p>
+      <section id="activity-checklist-7" class="level2 check">
+        <ol>
+          <li>
+            <p>תצרו קובץ חדש ותרשמו את הקוד הבא:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+from random import randrange, choice
+shape("turtle")
+
+colors = ['red', 'blue', 'green']
+
+def poly(sides, length):
+    angle = 360/sides
+    for n in range(sides):
+        forward(length)
+        right(angle)
+
+
+for count in range(10):
+    pencolor(choice(colors))
+    right(randrange(0, 360))
+    poly(randrange(3, 9), randrange(20, 50))
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>תשמרו ותריצו - התוכנה הזאת אמורה לצייר בעצמה עשר צורות שונות בצבעים שונים ובגדלים שונים.</p>
+            <p>
+                              השורה <code>from random import randrange, choice</code> מאפשרת לנו
+                              להשתמש בשתי פונקציות חדשות מספרייה אחרת שנקראת random (עד עכשיו השתמשנו רק בספרייה turtle).
+             <br>
+                              הפונקציה <code dir="ltr">randrange</code> גורמת לפייתון לבחור מספר אקראי בין שני מספרים שאנחנו בוחרים.
+                              למשל <code dir="ltr">randrange(1, 10)</code> יגרום לפייתון לבחור מספר שלם בין 1 ל-9 (פייתון יתחיל ב-1 ויפסיק לפני שיגיע ל-10).
+            </p>
+            <br>
+            <p>
+                              הפונקציה <code>choice</code> גורמת לפייתון לבחור מספר מתוך רשימה.
+                              רשימה בפייתון (list) זה אוסף של איברים שבאים אחד אחרי השני בתוך סוגריים מרובעים, למשל <code dir="ltr">[1, 2, 3]</code>,
+                              או רשימת הצבעים בקוד שלנו - <code dir="ltr">['red', 'blue', 'green']</code>. גם על רשימות אני מבטיח לדבר עוד בשיעור הבא.
+            </p>
+            <br>
+            <p>
+                             בזכות השימוש שלנו בפונקציות <code>choice</code> ו-<code>randrange</code>,
+                             אנחנו גורמים למחשב לבחור בשבילנו צבעים, צורות וגדלים שונים בכל פעם שנריץ את התוכנה.</p>
+          </li>
+        </ol>
+      </section>
+      <section id="things-to-try" class="level2 try">
+        <p>תנסו אולי להוסיף עוד צבעים ולשחק עם המספרים. מה תוכלו עוד לעשות בשביל שזה יהיה אפילו יותר מגניב?</p>
+      </section>
+       <p>
+         <strong>קבלו טיפ:</strong>
+                    אם אתם מציירים הרבה דברים שונים, יהיה לכם אולי קצת יותר נח להשתמש בפונקציה                            <code>exitonclick</code> במקום ב <code>done</code>,
+                    כי אז אפשר לסגור את הציור עם לחיצה בכל מקום ולא רק על האיקס.
+      </p>
+    </section>
+
+    <section id="step-8-go-wild" class="level1 activity">
+      <h1>שיעורי בית - השמים הם הגבול</h1>
+      <p>
+                למדתם בינתיים לזוז קדימה ואחורה, שמאלה וימינה; לעשות לולאות, לשנות צבעים, למלא צורות ועוד ועוד. מה תעשו עם כל הכוחות האלו?
+      </p>
+      <section id="things-to-try" class="level2 try">
+      <p>
+                האם תוכלו לצייר בית גדול עם הרבה חדרים? ציפור עם כנפיים צבעוניות? נחש מפחיד? חתול? כלב? אולי אריה? אולי הכל ביחד? אולי בכלל משהו אחר שאתם תמציאו?
+      </p>
+      <p>
+                תנסו להשתמש בכלים ובטריקים שלמדתם כדי לבנות ציור יפה שמורכב מהרבה צורות ותשתדלו שגם הקוד שאתם כותבים יהיה יפה.
+      </p>
+      <p>
+                נ.ב.
+      <br>
+                אם במקרה בא לכם להשתמש במשהו שעדיין לא למדנו, זה גם סבבה.
+                הנה שוב הקישור ל<a href="http://docs.python.org/3/library/turtle.html">כל הדברים שאפשר לעשות עם הצב</a> (אבל זה רק אם רוצים, ולצערי יש את זה רק באנגלית).
+      </p>
+      </section>
+    </section>
+  </body>
+</html>

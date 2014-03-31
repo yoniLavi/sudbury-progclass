@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Lesson 1 - Turtle Power</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/lesson.css" />
+    <link rel="stylesheet" href="static/css/python.css" />
+
+    <link rel="stylesheet" href="static/highlightjs/styles/default.css">
+    <script src="static/highlightjs/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <div class="level">1</div>
+      <div class="title">כח הצבים</div>
+    </header>
+    <section id="introduction" class="level1 intro">
+      <h1>מבוא:</h1>
+      <p>בשיעור הזה אנחנו הולכים להכיר את שפת התכנות פייתון.
+                     זאת שפה שמאוד נוח לקרוא אותה ולכן היא טובה מאוד למתכנתים מתחילים,
+                     ומצד שני היא שפה חזקה שאפשר לעשות איתה את כל הדברים המתקדמים יחסית בקלות.
+                    משתמשים בפייתון בגוגל, ב-NASA, ב-dropbox ובחברות וארגונים נוספים <a href="http://www.python.org/about/success/">רבים מאוד</a>.      </p>
+    </section>
+    <section id="step-0-open-up-the-python-editor" class="level1 activity">
+      <h1>שלב 0: מפעילים את עורך הטקסט שלנו ב-IDLE</h1>
+      <p>אם פייתון עדיין לא מותקן על המחשב שלכם, כעת זה הזמן להתקין אותו (בגרסה 3)
+      <a href="http://www.python.org/downloads/">מהאתר הרשמי</a></p>
+      <p>עכשיו שפייתון מותקן, הגיע הזמן לפתוח את סביבת הפיתוח שמגיעה עם פייתון - IDLE</p>
+      <ul>
+        <li>ב- Windows, תוכלו למצוא את IDLE בתפריט התחל.
+        <br /></li>
+        <li>במקינטוש או לינוקס, תפתחו חלון Terminal, תקלידו idle3 ותלחצו enter.</li>
+      </ul>
+      <p>
+                    כש-IDLE ייפתח, אתם תראו את החלון הראשי שלו שנקרא <code>Python Shell</code>.
+                    בחלון הזה אנחנו נוכל לראות תוצאות של מה שאנחנו עושים ואולי גם כל מיני שגיאות, אבל החלון העיקרי שנבלה בו זמן הוא של עורך טקסט.
+                    כדי לפתוח חלון טקסט לחצו על <code>File -&gt; New Window</code> ואז תסדרו כך שתוכלו לראות את שני החלונות.
+      </p>
+      <p>
+                עכשיו אתם מוכנים להתחיל.
+      </p>
+    </section>
+    <section id="step-1-hello-world" class="level1 activity">
+      <h1>שלב 1: שלום, עולם!</h1>
+      <h2>צעדים</h2>
+      <ol>
+        <li>
+          <p>פתחו את עורך הטקסט שלכם, וכתבו בו את שורת הקוד הבאה:</p>
+          <pre class="sourceCode python"><code>print("Hello world!")</code></pre>
+        </li>
+        <li>
+          <p>
+           שמרו את הקובץ בשם hello.py (מקובל תמיד לתת לקבצי פייתון סיומת של py).
+          </p>
+        </li>
+        <li>
+          <p>
+           עכשיו, בואו נגרום לפייתון (לפייתון?...) להריץ את הקוד שלכם. בחרו בתפריט Run -&gt; Run Module
+          </p>
+        </li>
+      </ol>
+      <p>
+        שימו לב, אתם יכולים לשנות את הטקסט בתוך המרכאות לכל מה שבא לכם.
+        תנסו למשל לגרום לפייתון להדפיס את השם שלכם.
+      </p>
+    </section>
+    <section id="step-2-hello-turtle" class="level1 activity">
+      <h1>Step 2: שלום, צב!</h1>
+      <p>
+      עכשיו אנחנו הולכים לשחק קצת עם צבים. צב הוא רובוט קטנטן שיכול לצייר ציורים על גבי המסך שלכם. אנחנו נשתמש בקוד פייתון כדי לגרום לו לזוז ולצייר.
+      </p>
+      <section id="activity-checklist-1" class="level2">
+        <ol>
+          <li>
+            <p>פתחו חלון קוד חדש (מתוך ה- File Menu) וכתבו את שורות הקוד הבאות:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+forward(100)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>
+	שמרו את התוכנה שלכם (כן, תוכנה! כי אתם עכשיו מתכנתים) בשם myturtle.py ובחרו Run -&gt; Run Module.
+                  רואים איך הצב זז קדימה 100 פיקסלים (נקודות על המסך)? לצב מחובר עט שמצייר קוים כשהצב זז על גבי המסך.
+            </p>
+            <p>
+              <strong>תזכורת:</strong> שמות של קבצי פייתון תמיד צריכים להסתיים ב- "py".
+            </p>
+          </li>
+          <li>
+            <p>
+בואו נגרום לצב לזוז על פני המסך! נסו להשתמש ב- <code dir="ltr">forward(200)</code> וגם לסובב את הצב ע"י שתשמשו ב- <code dir="ltr">right(90)</code> וב- <code dir="ltr">left(90)</code>. לדוגמא, <code dir="ltr">backward(20)</code> אומר לצב לזוז אחורה 20 פיקסלים, ו- <code dir="ltr">right(90)</code> אומר לצב לפנות 90 מעלות ימינה. אתם יכולים לתת לצב כמה הוראות שתרצו, והצב פשוט יבצע אותן לפי הסדר שבו כתבתם אותן.
+            </p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+forward(100)
+right(120)
+forward(100)
+left(90)
+backward(100)
+left(90)
+forward(50)
+
+done()
+</code></pre>
+          </li>
+        </ol>
+        <section id="angles-and-degrees" class="level3">
+          <h3>זויות ומעלות</h3>
+          <p>
+שחקו קצת עם הקוד ותגרמו לצב לעשות כל מיני צורות בעזרת שימוש ב- <code>forward</code>, <code>backward</code>,
+            <code>left</code>, <code>right</code>.
+<p>
+<strong>קבלו טיפ:</strong> זכרו, <code>forward</code> ו- <code>backward</code> מזיזים את הצב כמות פיקסלים מסויימת, אבל <code>left</code> ו- <code>right</code> מסובבים אבל לא מזיזים אותו.
+</p>
+בואו נסתכל על צב שפונה ימינה.
+          </p>
+          <pre><code>
+          צפון
+           0
+           |
+  מזרח     |     מערב
+  270 -----+----- 90
+           |
+           |
+          180
+         דרום
+</code></pre>
+          <p>נהוג למדוד סיבובים של צבים בעזרת מעלות של זוית. כמו שאתם אולי מכירים מלימודי גיאומטריה, סיבוב שלם הוא 360 מעלות ופנייה של 90 מעלות היא רבע סיבוב.
+                             כלומר, נניח שהצב מסתכל צפונה, אם נסובב אותו ב- 90 מעלות ימינה, הוא יסתכל מזרחה, אם נסובב אותו ב- 180 מעלות הוא יסתכל דרומה (בדיוק לכיוון ההפוך). אם נסובב אותו 270 מעלות הוא יסתכל מערבה. ואם נסובב אותו ב- 360 מעלות, נגרום לו לעשות סיבוב שלם ולחזור להיות בדיוק כמו שהוא היה.
+</p>
+          <p>ומה בנוגע לפניה שמאלה?</p>
+          <pre><code>
+          צפון
+           0
+           |
+  מזרח     |     מערב
+  90 -----+----- 270
+           |
+           |
+          180
+         דרום
+</code></pre>
+          <p>פנייה שמאלה היא בדיוק ההיפך - כשהצב מסתכל צפונה, אם נסובב אותו ב- 90 מעלות שמאלה, הוא יסתכל מערבה. אם נסובב אותו ב- 180 מעלות הוא יסתכל דרומה. אם נסובב אותו 270 מעלות הוא יסתכל מזרחה. ואם נסובב אותו ב- 360 מעלות, נגרום לו להישאר כמו שהוא היה. פניה של 360 מעלות היא סיבוב מלא.
+</p>
+        </section>
+        <section id="what-does-the-code-at-the-beginning-of-our-program-do" class="level3 protip">
+          <h3>מה עושה הקוד שבתחילת ובסוף התכנה שלנו</h3>
+          <p>
+            <code>from turtle import *</code>, נותן לנו להשתמש בכל הכלים של ספריה בשם turtle
+            שהיא חבילה של קוד שבה אנחנו יכולים להשתמש כדי לצייר על המסך. בתכנות, ספריה זה קובץ קוד שמישהו אחר כתב ואנחנו יכולים להשתמש בו כתשתית בשביל הקובץ שלנו במקום לכתוב את הכל מאפס. שימוש בספריות מאפשר לנו לחסוך זמן ולהתמקד יותר בדברים שמעניינים אותנו.
+          </p>
+          <p>
+            <code>shape</code> זאת פעולה שמשנה את הצורה של הדמות שאנחנו מזיזים.
+                            אנחנו נעדיף להשתמש בצורה  "turtle", אבל אפשר גם לבחור: "arrow", "circle", "square", "triangle" או "classic".
+          </p>
+          <p>
+            <code>done</code> זאת פקודה שאומרת לפייתון שסיימנו לעבוד שאר הפקודות של turtle. בעיקרון היא לא עושה דום דבר מעניין, אבל אם נשכח אותה, זה יכול לבלבל את החלונות של IDLE.
+          </p>
+          <p>שימו לב שאנחנו נוסיף את השורות האלו לכל התוכנות שלנו, אבל לא נתמקד בהן יותר</p>
+        </section>
+      </section>
+    </section>
+    <section id="step-3-drawing-shapes" class="level1 activity">
+      <h1>צעד 3: מציירים צורות!</h1>
+      <p>בואו נגרום לצב שלנו לצייר ריבוע.</p>
+      <section id="activity-checklist-2" class="level2">
+        <ol>
+          <li>
+            <p>פתחו קובץ חדש בעורך הטקסט שלכם, וכתבו בו את שורות הקוד הבאות:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+forward(100)
+right(90)
+forward(100)
+right(90)
+forward(100)
+right(90)
+forward(100)
+right(90)
+
+done()
+</code></pre>
+            <p>
+שמרו את התכנה שלכם ובחרו ב- run -&gt; new module. רואים ריבוע? הצב פונה 90 מעלות ארבע פעמים, ומסיים כשהוא מסתכל בדיוק לאותו הכיוון שממנו התחיל. זה בגלל שכשפונים 90, 90, 90 ו- 90 שוב, הצב מסתובב 360 מעלות בסך הכל.
+</p>
+            <p>
+מה עם משולש? למשולש יש שלוש פינות. זה אומר שנצטרך לסובב את הצב שלנו 3 פעמים. אם אנחנו רוצים לסיים באותו הכיוון שממנו התחלנו, אנחנו נצטרך לסובב את הצב סך הכל 360 פעמים, כמו שראינו במקרה של הריבוע. 360 חלקי 3 שווה 120. לכן אנחנו נסובב את הצב 120 מעלות, ואז 120 מעלות, ואז 120 מעלות פעם שלישית.
+</p>
+          </li>
+          <li>
+            <p>
+תנסו לערוך את הקוד שלכם כדי שהצב יצייר משולש.
+         תריצו את הקוד שלכם. קיבלתם משולש? אם לא, תנסו אולי להתייעץ עם חברים</p>
+          </li>
+        </ol>
+
+<br/>
+	<strong>אתגר</strong> - האם תוכלו לצייר את הבית הזה? האם תוכלו לעשות את זה מבלי לחזור על אותו קו פעמיים?
+<br/>
+<img alt="הבית של אוילר" src="http://lh6.googleusercontent.com/MdqoSvzsdcXyarLo42VHscZr6QvKE5JE7LfUM0H4cNm5etWN7jvsTkqiRHRwcKa_jdHD" title="הבית של אוילר"></img>
+        <section id="pick-a-colour" class="level3">
+          <h3>בחרו צבע</h3>
+          <p>
+		מהו הצבע האהוב עליכם?
+		אתם יכולים לשנות את הצבע של הקווים שהצב מצייר על ידי שימוש בפונקציה <code>pencolor</code>, ואתם יכולים גם לשנות את עובי העט ע"י <code>pensize</code>:
+          </p>
+          <ol>
+            <li>
+              <p>ערכו את הקוד שלכם כדי שיראה כמו הדוגמא הבאה:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+pensize(10)
+pencolor("red")
+forward(100)
+right(120)
+
+pencolor("blue")
+forward(100)
+right(120)
+
+pencolor("green")
+forward(100)
+right(120)
+
+done()
+</code></pre>
+            </li>
+            <li>
+              <p>תריצו את הקוד. מה הצב צייר על המסך?
+              <br/>הקוד הזה מצייר משולש עבה בשלושה צבעים שונים.</p>
+            </li>
+            <li>
+              <p>יש עוד המון צבעים אחרים שאפשר להשתמש בהם, נסו לחשוב על שמות של צבעים, לשנות בקוד, להריץ ולראות אם זה עובד.</p>
+            </li>
+          </ol>
+        </section>
+      </section>
+    </section>
+    <section id="step-4-repeating-yourself-with-a-for-loop" class="level1 activity">
+      <h1>שלב 4: בואו נחזור על זה (בעזרת לולאות)</h1>
+      <p>
+                בתוכנית הקודמת שעשינו, כתבנו את אותן השורות בדיוק הרבה פעמים. כמובן שיש דרך יותר חכמה לעשות את זה וקוראים לזה לולאה.
+                כשרוצים לחזור על אותן שורות קוד מספר פעמים ידוע מראש, משתמשים בפייתון בלולאת <code>for</code>.
+      <br/>
+                במקרה של הריבוע שלנו, אנחנו רוצים לחזור על אותן פעולות 4 פעמים (פעם לכל צלע).
+      </p>
+      <section id="activity-checklist-3" class="level2">
+        <h2>דוגמה ראשונה ללולאה (עדיין לא ננסה להבין עד הסוף איך לולאות עובדות)</h2>
+        <ol>
+          <li>
+            <p>צרו קובץ חדש וכתבו בו את שורות הקוד הבאות:</p>
+<pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+for count in range(4):
+    forward(100)
+    right(90)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>שמרו את הקובץ ותריצו אותו.</p>
+            <p>
+                              שימו לב ששורות הקוד שבתוך הלולאה מוזזות שמאלה ביחס לשורות שמעל. ההזזה הזאת, שנקראת אינדנטציה (indentation או TAB או בעברית הזחה),
+                              היא הדרך לקבוע בפייתון איזה חלק מהקוד הוא בתוך הלולאה.
+                              מקובל בפייתון לעשות אינדנטציה באמצעות 4 רווחים ואפשר להשתמש בכפתור TAB בשביל ליצור אותה וב Shift+TAB בשביל לבטל את האינדנטציה.
+            </p>
+          </li>
+          <li>
+            <p>
+              בואו נראה מה יקרה עם נזיז שמאלה רק את השורה <code>forward</code>,
+              תשנו את התוכנה שלכם, כך שיופיע הקוד הבא:
+            </p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+for count in range(4):
+    forward(100)
+right(90)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>
+                               תנסו לנחש מה יקרה, ואז תריצו את הקוד ותבדקו אם צדקתם.
+            </p>
+          </li>
+          <li>
+            <p>אוקי, עכשיו כשראינו מה התפקיד של האינדנטציה, בואו נתקן את האינדנטציה ונשנה את הקוד חזרה למה שהוא היה קודם.
+עכשיו בואו תנסו לשנות את הקוד כך שייצור צורות אחרות - משולש, מחומש, משושה, מתומן. תנסו לשחק עם שלושת המספרים - מה שבתוך <code>range</code>, <code>right</code> ו- <code>forward</code>.
+        </p>
+	<strong>אתגר</strong> לסיום - האם תצליחו לגרום לצב לצייר משהו שנראה כמו עיגול?
+      </section>
+    </section>
+ <p>הערה: <a href="http://docs.python.org/3/library/turtle.html">אם אתם מעדיפים לרוץ קצת קדימה בעצמכם, כאן תוכלו למצוא את הדוקומנטציה המלאה של ספריית turtle</a></p>
+  </body>
+</html>

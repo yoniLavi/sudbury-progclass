@@ -1,0 +1,307 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Lesson 4 - Commanding the line</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/lesson.css" />
+
+    <link rel="stylesheet" href="static/highlightjs/styles/default.css">
+    <script src="static/highlightjs/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <div class="level">4</div>
+      <div class="title">לפקד על השורה</div>
+    </header>
+    <section class="level1 activity">
+      <h1>שלב 14: רקע לאינטרקציה עם המחשב</h1>
+      <ol>
+        <li>
+          	בשיעורים הקודמים, למדנו להשתמש בתכנות כדי לגרום למחשב לצייר את מה שאנחנו רוצים.
+          	אבל (פרט למעט רנדומיזציה בשיעור האחרון) המחשב תמיד עשה אותו דבר בכל פעם שהרצנו את התוכנה.
+          	בשיעור הזה נלמד לעשות אינטרקציה עם התוכנות שלנו כך שנוכל להשפיע על מה שהתוכנה עושה מבלי לשנות את הקוד.
+        </li>
+        <li>
+          	במהלך היום-יום, אתם כנראה רגילים לתת למחשב הוראות בעיקר דרך לחיצות העכבר, אבל בשיעור הזה נלמד על דרך חזקה יותר לאינטרקציה - שורת הפקודה.
+          	שורת הפקודה (CLI-Command Line Interface) זאת דרך לשלוט במחשב שהייתה קיימת הרבה לפני שהמציאו את החלונות ואת העכבר
+          	והיא שימושית למתכנתים ומשתמשים מתקדמים כדי לגרום למחשב לעשות טריקים שהיה הרבה יותר קשה לעשות עם ממשק חלונות.
+        </li>
+        <li>
+          	בשביל שנוכל להתחיל להתכתב עם המחשב בעזרת שורת פקודה, אנחנו צריכים להשתמש ב-Shell (מעטפת).
+          	Shell זה סוג של תוכנה שנותנת לנו שורה שאנחנו יכולים לכתוב בה פקודה, כשאנחנו לוחצים אנטר היא מריצה את הפקודה שלנו ואז מדפיסה על המסך את התוצאות של מה שעשינו.
+          	<br>
+            שימו לב שיש סוגים רבים של shell-ים ובסוף השיעור נוכל אפילו לעשות shell קטן משלנו.
+        </li>
+        <li>
+          Windows מגיע עם shell יחסית פשוט שנקרא cmd, אבל הוא לא מספיק שימושי לטעמי ואני ארצה שנעבוד  Shell חזק יותר שנקרא bash ואשר מגיע מובנה במערכת ההפעלה לינוקס.
+          כדי להתקין את bash במחשב עם Windows, תורידו אותו מ-<a href="http://git-scm.com/download/n">כאן</a> ותתקינו אותו עם ההגדרות הרגילות.
+        </li>
+        <li>
+            אחרי ההתקנה, פתחו את Git-Bash במתפריט התחל ותקבלו מסך שחור נחמד שנראה בערך ככה
+            <img src="static/img/bash-python.png" alt="bash-python" width="700" height="300">
+            <br>(אגב, בשלב הזה, עדיף שתתעלמו מהמונח git שמופיע פה מסביב. נלמד על גיט בשיעורים מתקדמים)
+        </li>
+        <li>
+          לפני הכל, הקלידו <code dir="ltr">python -V</code> (עם V גדולה)
+          ולחצו אנטר כדי לראות האם-Bash מזהה את פייתון.
+          <p>
+              אם במקום להראות לכם שורה יפה עם הגרסא (כמו בתמונה) יש איזו שגיאה, אז זה אומר שצריך להגיד ל-Windows איפה לחפש את פייתון.
+              תפתחו בתפריט התחל את powershell (עוד סוג של Shell ☺)
+              ותריצו בו את הפקודה הבאה - ע"י הדבקה בשורה אחת ואז לחיצה על אנטר.
+
+              <pre class="sourceCode powershell"><code dir="ltr">[Environment]::SetEnvironmentVariable("Path", "$env:Path;C:\Python33\;C:\Python33\Scripts\", "User")</code></pre>
+          </p>
+          <p>
+              זה שלב בעייתי ובהחלט  יכול להיות שיהיו עם זה בעיות, או אפילו שלא מותקן לכם powershell, אז אל תהססו לבקש עזרה.
+          </p>
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 15: שלום לשורת הפקודה וניווט במערכת הקבצים</h1>
+      <ol>
+        <li>
+          אנחנו לא הולכים להיכנס לזה כל-כך, אבל בעיקרון bash זה סוג של שפת תכנות,
+          אז לפי החוק אתם צריכים לברך שלום עולם. תריצו את הפקודה הבאה:
+          <code>echo hello world</code>
+        </li>
+        <li>
+	עכשיו כשנכנסתם לעולם של bash, יש דבר מרכזי שאתם צריכים לדעת - תמיד כשיש לנו שורת פקודה, היא מתייחסת לתיקיה כלשהי במחשב.
+	כשנריץ פקודה כלשהי, היא תתבצע באותה התיקיה. אם נרצה לבצע פקודה בתוך תיקיה אחרת, קודם כל נצטרך לעבור לאותה תיקיה.
+	אז בואו נכיר כמה פקודות פשוטות שמאפשרות לנווט בין התיקיות במחשב מתוך שורת הפקודה.
+          הפקודה <code>pwd</code> (קיצור של Print Working Directory) תראה לנו באיזו תיקיה אנחנו נמצאים עכשיו.
+        </li>
+        <li>
+          תריצו את הפקודה <code>pwd</code> ותראו איפה אתם נמצאים עכשיו.
+          סביר להניח שתראו שאתם בתיקיית הבית של המשתמש שלכם, למשל אצלי זה <code dir="ltr">/c/Users/Yoni</code>.
+        </li>
+        <li>
+          בואו נעבור עכשיו לתיקיה אחרת ע"י שימוש בפקודה <code>cd</code> (קיצור של Change Directory).
+          <br>
+          למשל, תריצו את הפקודה <code>cd Desktop</code> כדי להיכנס לתיקיה של שולחן העבודה.
+          <br>
+          תריצו שוב את הפקודה <code>pwd</code> כדי לראות שבאמת עברתם לתיקיה חדשה.
+        </li>
+        <li>
+          הפקודה <code>ls</code> (קיצור של List) מאפשרת לכם לראות מה יש בתיקיה שאתם נמצאים בה כרגע.
+        </li>
+      </ol>
+      <section id="challenge-drawing-the-other-shapes" class="level2 challenge">
+      <h2>תרגיל: עושים טיול שנתי בכונן</h2>
+          תשקיעו כמה דקות ותשחקו עם הפקודות שלמדתם כדי לעשות סיבוב בכונן ולראות מה יש בכל מיני תיקיות.
+          <h3>טיפים:</h3>
+          <ul>
+            <li>
+              בשביל לצאת מתיקייה שנכנסתם אליה תוכלו להשתמש ב<code dir="ltr">cd ..</code>
+            </li>
+            <li>
+              וכדי להגיע הכי למעלה בכונן C (הכונן הראשי) תשתמשו ב-<code dir="ltr">cd /c</code>
+            </li>
+            <li>
+              טיפ: אם לוחצים על החץ למעלה במקלדת ב-bash, תוכלו לחזור לפקודה הקודמת שהרצתם. אם תמשיכו ללחוץ על החץ, תוכלו לחזור על כל ההיסטוריה של הפקודות.
+            </li>
+          </ul>
+      </section>
+    </section>
+    <!-- perhaps at first upload only until here -->
+    <section class="level1 activity">
+      <h1>שלב 16: מריצים קוד פייתון דרך שורת הפקודה</h1>
+      <ol>
+        <li>
+          אחד הדברים המרכזיים שאפשר לעשות ב-bash זה להריץ תוכנות.
+          תעברו לתיקיה שאתם רוצים לעבוד בה ותריצו את הפקודה הבאה בשביל להפעיל את עורך הטקסט notepad וליצור קובץ פייתון חדש.
+          <p><code dir="ltr">notepad helloer.py</code></p>
+          הערה: אנחנו נשתמש בשיעור הזה ב-notepad במקום ב-IDLE. בעיקרון, זה בכלל לא משנה באיזה עורך תשתמשו ובשיעורים הבאים תוכלו לבחור כל עורך טקסט שנוח לכם.
+        </li>
+        <li>
+          זוכרים את התוכנה הפשוטה הזאת שכתבנו בשיעור הראשון?
+          בואו נשתמש בה שוב עכשיו.
+          <br>
+          תכתבו אותה בתוך הקובץ שנפתח, תשמרו ואז תסגרו את החלון.
+          <pre class="sourceCode python"><code>print("Hello world!")</code></pre>
+        </li>
+        <li>
+          עכשיו שחזרתם ל-bash, תוכלו להריץ את התוכנה ע"י כך שתריצו את הפקודה הבאה:
+          <p><code dir="ltr">python helloer.py</code></p>
+        </li>
+        <li>
+          בהנחה שהכל סבבה, בואו נמשיך לעבוד על הקובץ. תריצו שוב את notepad, אבל הפעם עם הסימן & (אמפרסנד) בסוף השורה, בשביל ש-bash לא יחכה ש-notepad ייסגר וכך נוכל לעשות שינויים בקלות, ע"י שימוש בשני החלונות זה ליד זה.
+          <p><code dir="ltr">notepad helloer.py &</code></p>
+        </li>
+        <li>
+          בואו נשנה את התוכנה שלנו בשביל שנוכל להגיד שלום לדברים ואנשים אחרים (ולא רק לעולם).
+          תשנו את הקוד ל:
+          <pre class="sourceCode python"><code>name = "Yoni"
+print("Hello " + name)
+</code></pre>
+        תריצו שוב את הקוד בעזרת הפקודה <code dir="ltr">python helloer.py</code> ב-bash, מבלי לסגור את העורך. שימו לב שסימן הפלוס <code>+</code> מאפשר במקרה הזה לחבר שני קטעי טקסט (ולא רק מספרים).
+        <br>
+        בהנחה שלא קוראים לכם יוני, תשנו את הקוד כך שידפיס את השם שלכם ותבדקו ב-bash שזה עובד.
+        </li>
+        <li>
+          רגע, אבל אמרנו שבשיעור הזה נדבר על אינטרקציה וקלט.
+          אז ככה, דרך פשוטה להעביר מידע לתוך התוכנה היא ע"י הוספה שלו לתוך הפקודה.
+          <br>
+          תשנו את הקוד בעורך לזה:
+          <pre class="sourceCode python"><code>import sys
+name = sys.argv[1]
+print("Hello " + name)
+</code></pre>
+
+        תריצו ב-bash את הפקודה <code dir="ltr">python helloer.py sky</code> ותראו מה קורה.
+
+        הספריה <code>sys</code> נותנת כל מיני כלים בשביל לעבוד עם מערכת ההפעלה
+        והרשימה <code>sys.argv</code> כוללת את השורה של הפקודה שהרצנו, אז אנחנו רוצים לקחת את השם של הדבר שאומרים לו שלום מתוך המילה הראשונה בפקודה אחרי שם התוכנה.
+        </li>
+        <li>
+          הפקודה הקודמת איפשרה לנו להעביר קלט עוד לפני שהתוכנה מתחילה לרוץ, אבל ברוב המקרים נרצה להעביר לתוכנה קלט נוסף אחרי שהיא כבר רצה. תשנו את הקוד למה שמופיע פה ותריצו:
+          <pre class="sourceCode python"><code>name = input("What's your name? ")
+print("Hello " + name)
+</code></pre>
+          הפונקציה <code>input</code> מציגה למשתמש שאלה ואחרי ונותנת מקום להקליד תשובה. את התשובה שקיבלנו מהמשתמש אנחנו אחרי זה שמים במשתנה.
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 17: תנאים</h1>
+      <ol>
+        <li>
+            בשיעורים הקודמים ידענו תמיד מה המידע שאנחנו עובדים איתו,
+            אבל עכשיו פתאום שאנחנו תלויים במשתמשים שמריצים את התוכנה,
+            יכולים להיות כל מיני מקרים ולפעמים נרצה להריץ קוד שונה במקרים שונים.
+            הדרך שלנו לעשות את זה היא להשתמש בפקודה <code>if</code>.
+        </li>
+        <li>
+          תריצו את הקוד הבא ותראו מה קורה:
+          <pre class="sourceCode python"><code>name = input("What's your name? ")
+if name == "Yoni":
+    print("Oh, it's just you")
+else:
+    print("Hello " + name)
+</code></pre>
+          לפקודת <code>if</code> הזאת יש שני חלקים:
+          <ul>
+            <li>
+                החלק הראשון שמתחיל ב<code>if</code> עושה בדיקה ואם היא עוברת, הוא מריץ את השורה שבתוכו. שימו לב ש-<code>==</code> זאת הדרך לבדוק האם משהו שווה למשהו (כי הסימן <code>=</code> כבר תפוס בשביל סתם לשים דברים במשתנים).
+            </li>
+            <li>
+                החלק השני שמתחיל ב<code>else</code> מכיל את הקוד שירוץ עם הבדיקה נכשלת.
+            </li>
+          </ul>
+        </li>
+        <li>
+          שימו לב שאפשר גם לעשות <code>if</code> בלי החלק השני, ואז אם הבדיקה נכשלת, פשוט לא יקרה כלום.
+          תנסו להריץ את הקוד הבא עם כל מיני שמות ותראו מה יקרה:
+          <pre class="sourceCode python"><code>name = input("What's your name? ")
+if name == "Yoni":
+    print("Oh, it's just you")
+</code></pre>
+        </li>
+        <li>
+          חוץ מזה, אם רוצים, אפשר גם להוסיף עוד בדיקות ע"י הוספה של קטעי קוד שמתחילים ב <code>elif</code> (קיצור של Else If).
+          למשל ככה (תנסו להריץ עם שמות שונים):
+          <pre class="sourceCode python"><code>name = input("What's your name? ")
+if name == "Yoni":
+    print("Oh, it's just you")
+elif name == "world":
+    print("Hi there world!")
+elif name == "sky":
+    print("Sky, what's up?")
+else:
+    print("Hello " + name)
+</code></pre>
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 17: לולאות אינסופיות</h1>
+      <ol>
+        בשלב הזה, אנחנו כמעט מוכנים ליצור shell בסיסי משלנו.
+        אבל בשביל שנוכל להריץ יותר מפקודה אחת בכל פעם נצטרך להשתמש בלולאה.
+        <li>
+          בשיעורים הקודמים השתמשנו בלולאה מסוג <code>for</code> ואמרנו לפייתון כמה פעמים צריך להריץ את הקוד.
+          הפעם אנחנו לא יודעים להגיד מראש כמה פעמים המשתמש ירצה להשתמש בתוכנה ולכן נצטרך לולאה אחרת.
+          תריצו את הקוד הבא ותראו מה קורה:
+          <pre class="sourceCode python"><code>def hello():
+    print("Hello " + name)
+
+name = input("What's your name? ")
+while True:
+    hello()
+</code></pre>
+          אופס!
+          יצא שהקוד שלנו ממשיך לרוץ לנצח. זה מה שנקרא לולאה אינסופית וזה כמעט תמיד רעיון רע.
+          בשביל להפסיק את זה, תלחצו בו זמנית על Ctrl+C כדי לשלוח לתוכנה interrupt שמבקש ממנה להפסיק.
+        </li>
+        <li>
+          אז ראינו שלולאת <code>while True</code> רצה לנצח אם לא עוצרים אותה.
+          יש כמובן דרך יפה לעצור את הלולאה מבלי שנצטרך להרוג את התוכנה בכח.
+          תריצו את הקוד הבא ותראו מה קורה. כשנמאס לכם, תכתבו stop וזה אמור לגרום לתוכנה לעצור.
+          <pre class="sourceCode python"><code>def hello():
+    print("Hello " + name)
+
+def bye():
+    print("Bye " + name)
+
+name = input("What's your name? ")
+
+while True:
+    command = input("What should I do, " + name + "? ")
+    if command == "hello":
+        hello()
+    elif command == "bye":
+        bye()
+    elif command == "stop":
+        break
+    else:
+        print("You're funny, there's no such command")
+</code></pre>
+          הפקודת שהשתמשנו בה <code>break</code> פשוט מפסיקה את הלולאה שהיא נמצאת בתוכה ונותנת לתוכנה להסתיים.
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+        <h1>שלב 18: שריון צבים משלכם</h1>
+        אוקי, הגענו לסוף השיעור, עכשיו אתם מוכנים לבנות shell קטן בעצמכם עם כל הפקודות שבא לכם.
+        הכנתי פה קוד עם כמה פקודות בסיסיות, כולל ציור של משולש בעזרת ספריית turtle.
+        תשמרו את  התוכנה הבאה בקובץ חדש, תריצו אותו ותראו מה הוא יודע לעשות:
+        <pre class="sourceCode python"><code>from turtle import *
+def triangle():
+    for count in range(3):
+        forward(100)
+        left(120)
+
+    exitonclick()
+
+def bye():
+    print("Bye " + name)
+
+name = input("What's your name? ")
+
+while True:
+    command = input("What should I do, " + name + "? ")
+    if command == "triangle":
+        triangle()
+    elif command == "bye":
+        bye()
+    elif command == "stop":
+        break
+    else:
+        print("You're funny, there's no such command")
+</code></pre>
+      <section id="challenge-drawing-the-other-shapes" class="level2 challenge">
+      <h2>תרגיל: מוסיפים פקודות משלכם</h2>
+        תראו איך אתם יכולים לשפר את ה-shell הזה ע"י כך שתוסיפו עוד הפקודות שבא לכם.
+        למשל, אתם יכולים להוסיף פקודות בשביל לצייר צורות נוספות בכל מיני צבעים, להתכתב איתכם בטקסט וכו'. השמים הם הגבול.
+      </section>
+    </section>
+  </body>
+</html>

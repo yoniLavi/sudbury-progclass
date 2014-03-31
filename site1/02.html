@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Lesson 2 - Stronger Turtle Powers</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/lesson.css" />
+    <link rel="stylesheet" href="static/css/python.css" />
+
+    <link rel="stylesheet" href="static/highlightjs/styles/default.css">
+    <script src="static/highlightjs/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <div class="level">2</div>
+      <div class="title">כח הצבים - חלק 2</div>
+    </header>
+    <section id="step-5" class="level1 activity">
+      <h1>שלב 5: שמים דברים במשתנים</h1>
+      <p>
+                 ברוכים הבאים לשיעור השני! הפעם נמשיך לעבוד עם הצב, אבל נלמד להשתמש במושגים ועקרונות נוספים של תכנות בשביל לעשות סדר ולעזור לנו לעשות דברים יותר מתקדמים.
+      </p>
+      <p>
+                בואו נמשיך לעבוד על הריבוע מהתרגיל הקודם, אבל הפעם, במקום לרשום את המספרים עמוק בקוד, נשתמש במילים.
+                אנחנו נגדיר את המילה <code>sides</code> שתחזיק את מספר הצלעות, את המילה <code>length</code> שתחזיק את אורך הצלע
+                ואת המילה <code>angle</code> שתחזיק את גודל הזוית.
+      <br>
+                מילים כאלו שאנחנו שמים בהן ערכים נקראות משתנים (variables) והן עוזרות לנו לסדר את התוכנה כך שיהיה יותר נוח להבין מה קורה ויותר קל לשנות את ההתנהגות.
+                משתנים הם מאוד שימושיים בתכנות ואנחנו נדבר ונשתמש בהם עוד המון בהמשך.
+      </p>
+      <ol>
+        <li>
+          <p>תשנו את הקובץ, כך שיהיה כתוב:</p>
+          <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+sides = 4
+length = 100
+angle = 90
+for count in range(sides):
+    forward(length)
+    right(angle)
+
+done()
+</code></pre>
+        </li>
+        <li>
+          <p>שמרו את התכנה שלכם ותריצו ע"י- run -&gt; new module.</p>
+        </li>
+      </ol>
+    </section>
+    <section id="challenge-drawing-the-other-shapes" class="level2 challenge">
+      <h2>תרגיל: ציירו צורות אחרות</h2>
+      <p>תוכלו לצייר את המצולעים האלו ע"י כך שתשנו את המספרים במשתנים?</p>
+      <ul>
+        <li>משולש? (3 צלעות)</li>
+        <li>מחומש? (5 צלעות)</li>
+        <li>משושה? (6 צלעות)</li>
+        <li>מתומן? (8 צלעות)</li>
+      </ul>
+      <p>
+                שימו לב, למשולש יש 3 צלעות (צדדים) ובסיבוב בין הצלעות נצטרך לפנות 120 מעלות (120 מעלות 3 פעמים זה בדיוק סיבוב שלם - 360 מעלות).
+לריבוע יש 4 צלעות, ופונים 90 מעלות כל פעם (גם הפעם, כמו תמיד, סך כל הסיבוב הוא 360 מעלות).
+למשושה יש 6 צלעות, כמה מעלות צריך לפנות בשביל לצייר אותו? תנסו לחשב או אולי פשוט לנסות לשים מספרים שונים.
+        </p>
+      </section>
+    </section>
+    <section id="step-6" class="level1 activity">
+      <h1>שלב 6: מסתובבים</h1>
+      <p>
+                 במקום לחשב את הזויות בעצמנו, למה שלא ניתן למחשב לעשות את העבודה בשבילנו?
+                 פייתון יכול לעשות כל מיני פעולות על מספרים כגון חיבור, חיסור, כפל וחילוק.
+      </p>
+      <p>
+                למשל, במקום לכתוב <code dir="ltr">sides = 4</code> אנחנו יכולים להשתמש בחיבור
+                ולרשום <code dir="ltr">sides = 3 + 1</code> או                 להשתמש בחיסור <code dir="ltr">sides = 5 - 1</code>.
+                כפל וחילוק הם דומים: בשביל כפל, משתמשים בפייתון בסימן <code>*</code> (כוכבית) ובשביל חילוק משתמשים בסימן <code>/</code> (סלאש).
+      </p>
+      <p>
+                בכל צורה, אנחנו צריכים בסך-הכל לפנות 260 מעלות, אז בריבוע צריך לפנות <code dir="ltr">360 / 4</code> מעלות ובמשולש <code dir="ltr">360 / 3</code> מעלות.
+      </p>
+      <section id="activity-checklist-4" class="level2">
+        <h2>בואו ננסה את זה</h2>
+        <ol>
+          <li>
+            <p>תשנו את התוכנה כך שתחשב את הזוית בעצמה:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+sides = 4
+length = 20
+angle = 360 / sides
+
+for count in range(sides):
+    forward(length)
+    right(angle)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>
+                             תריצו ותראו שקיבלתם ריבוע. עכשיו תנסו לשנות את מספר הצלעות (<code>sides</code>) כל שתקבלו צורה אחרת. תנסו למשל לצייר כך מתומן (8 צלעות).
+            </p>
+          </li>
+        </ol>
+      </section>
+    </section>
+    <section id="step-6-solid-shape" class="level1 activity">
+      <h1>שלב 7: צובעים את הצורות</h1>
+      <section id="activity-checklist-5" class="level2">
+        <ol>
+          <li>
+          <p>
+                         אנחנו יכולים לבקש מהצב שימלא את הצורה שאנחנו מציירים בצבע בעזרת הפעולות <code>begin_fill</code> ו- <code>end_fill</code>.
+                         תוסיפו את הפקודות האלו לקוד שלכם כך:
+         </p>
+         <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+sides = 4
+length = 20
+
+fillcolor('red')
+pencolor('red')
+begin_fill()
+
+angle = 360/sides
+for count in range(sides):
+    forward(length)
+    right(angle)
+
+end_fill()
+
+done()
+</code></pre>
+          <p>כמו עם <code>pencolor</code> מהשלבים הקודמים, <code>fillcolor</code> קובע את הצבע שבו ימולאו הצורות שלכם באמצעות שמות הצבעים.
+          </p>
+          שימו לב שאתם צריכים להשתמש ב-<code>begin_fill</code> כדי להגיד לצב שאתם מתחילים לצבוע וב- <code>end_fill</code>  כדי להגיד לו שסיימתם לצייר את הצורה.
+          </li>
+          <li>
+            <p>תנסו לשנות את הצבעים, הצורות והאורכים ולצייר כך כל מיני דברים אחרים.</p>
+          </li>
+        </ol>
+      </section>
+    </section>
+    <section id="step-7-pen-goes-up-pen-goes-down" class="level1 activity">
+      <h1>שלב 8: מרימים את העט</h1>
+      <section id="activity-checklist-6" class="level2">
+        <p>
+                     אם בא לכם להזיז את הצב למקום חדש מבלי להשאיר סימן, אתם יכולים להרים את העט של הצב בעזרת <code>penup</code>
+                     ואז לחזור שוב לצייר עם <code>pendown</code>.</p>
+        <ol>
+          <li>
+            <p>הנה דוגמא:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+pencolor('red')
+
+for count in range(20):
+    penup()
+    forward(10)
+    pendown()
+    forward(20)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>אתם אמורים לקבל קו מקווקו.</p>
+          </li>
+        </ol>
+        <section id="home-home-on-the-screen." class="level3 protip">
+          <h3>חזרה הביתה</h3>
+          <p>טריקים נוספים:
+          <code>home</code> מחזיר את הצב לנקודת ההתחלה.
+          <code>clear</code> מנקה את כל המסך, ו-<code>reset</code> עושה את שניהם (מאפס את הכל).
+          	</p>
+        </section>
+      </section>
+    </section>
+    <section id="step-3-a-new-command-appears" class="level1 activity">
+      <h1>שלב 9: מגדירים פקודות חדשות</h1>
+      <p>בשלב הזה אנחנו ניקח את התוכנה שלנו שמציירת ריבוע ונמשיך לעבוד עליה כך שתהיה אפילו יותר מסודרת ומוצלחת!</p>
+
+        <ol>
+          <li>
+            <p>תזינו שוב את הקוד הבא שכבר כתבנו בשלב 5 ובו נעזרנו במשתנים בשביל לעשות סדר:</p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+sides = 4
+length = 100
+angle = 360/sides
+
+for n in range(sides):
+    forward(length)
+    right(angle)
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>תריצו ותוודאו שקיבלתם את אותו הריבוע כמו קודם.</p>
+          </li>
+          <li>
+	    <p>
+                             זאת תוכנה קצת ארוכה, אבל היא מוצלחת כי אנחנו ראינו שבזכות המשתנים אפשר לצייר איתה בקלות גם צורות אחרות.
+                             הבעיה היא שאם אנחנו רוצים לצייר כמה צורות, אנחנו צריכים להעתיק אותה שוב ושוב לכל צורה. למזלנו, יש דרך לחסוך לנו את העבודה הזאת - נגדיר פונקציה.
+            <br>
+                             כמו שבשלב 5 נעזרנו במשתנים בשביל לתת שמות למספרים שלנו, הפעם אנחנו ניתן שם לפעולה.
+                             באופן כללי, בתכנות, נרצה לעיתים קרובות לארוז מספר פעולות תחת שם אחד בשביל לחסוך מקום ולעשות סדר וכדי לעשות זאת,
+                             אנחנו צריכים ליצור פונקציה (function - פעולה).
+            </p>
+          </li>
+          <li>
+            <p>תערכו את הקוד ותוסיפו את השורה <code dir="ltr">def poly():</code> .
+                           מתחת לשורה הזאת, תכניסו את שורות הקוד שהיו לנו קודם כדי לצייר את הריבוע עם אינדנטציה (אפשר עם לחיצה על TAB) - בדיוק כמו בלולאה:
+          </p>
+            <pre class="sourceCode python"><code>from turtle import *
+shape("turtle")
+
+def poly():
+    sides = 4
+    length = 100
+    angle = 360/sides
+
+    for n in range(sides):
+            forward(length)
+            right(angle)
+
+pencolor('red')
+poly()
+right(180)
+poly()
+
+done()
+</code></pre>
+          </li>
+          <li>
+            <p>תריצו את התוכנה ותקבלו שני ריבועים.</p>
+          </li>
+        </ol>
+        <p>
+                    מה שבעצם קרה כאן זה שחסכנו לעצמנו הרבה זמן, על-ידי כך שהגדרנו פעולה (פונקציה) חדשה בשם <code dir="ltr">poly</code>.
+                    אחרי הגדרת הפונקציה, כל פעם שכתבנו <code dir="ltr">poly()</code>,
+                    מה שפייתון עשה זה להריץ בדיוק את מה שכתבנו בתוך האינדנטציה מתחת לשורת ה-<code dir="ltr">def poly():</code>.
+        </p>
+        <p>
+          פונקציות הן דרך נהדרת לחסוך לנו כתיבה ולעשות את הקוד מסודר. תנסו לשחק בעצמכם עם הדוגמא ולראות מה קורה כשמשנים את הפונקציה.
+        </p>
+      </section>
+    </section>
+  </body>
+</html>
