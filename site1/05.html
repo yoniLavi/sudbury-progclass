@@ -287,10 +287,12 @@ if "big" in my_string:
 
           <pre class="sourceCode python"><code>number = 0
 while number < 10000:
-    number = input("Give me a big number: ")
+    number_name = input("Give me a big number: "))
+    number = int(number_name)
 
 print("Thank you, %s is good enough for me" % number)
 </code></pre>
+שימו לב שהיינו צריכים להשתמש בפונקציה <code>int</code> בשביל להפוך את הטקסט שקילנו מהמשתמש למספר. 
         </li>
         <li>
 הלולאה האחרת שלמדנו עליה היא <code>for</code>.
