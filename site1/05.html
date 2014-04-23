@@ -37,8 +37,8 @@
         <li>
 סוג של מידע נקרא גם טיפוס וכדי לדעת מה הטיפוס של אובייקט בפייתון, אנחנו יכולים להשתמש בפונקציה <code>type</code>
 
-          <pre class="sourceCode python"><code>type(42)</code></pre>
-          <pre class="sourceCode python"><code>type("Hello world")</code></pre>
+          <pre class="sourceCode python"><code>print(type(42))</code></pre>
+          <pre class="sourceCode python"><code>print(type("Hello world"))</code></pre>
 
         </li>
         <li>
@@ -46,11 +46,11 @@
 אז כמו שבדקנו את הטיפוס של אובייקט קודם, אנחנו יכולים גם לבדוק מה הטיפוס של המידע שיש בתוך משתנה ונקבל את אותה התשובה:
 
           <pre class="sourceCode python"><code>x = 42
-type(x)
+print(type(x))
 </code></pre>
 
           <pre class="sourceCode python"><code>x = "Hello world"
-type(x)
+print(type(x))
 </code></pre>
 
         </li>
@@ -277,7 +277,34 @@ if "big" in my_string:
 
     </section>
     <section class="level1 activity">
-      <h1>שלב 24: לולאות</h1>
+      <h1>שלב 24: המרה מטיפוס לטיפוס</h1>
+      <p> יש בפייתון שני סוגים של לולאות ולמדנו קצת על שתהין ועכשיו נדבר קצת יותר לעומק.</p>
+      <ol>
+        <li>
+לפעמים נרצה לקחת אובייקט ולהחליף את הטיפוס שלו:
+
+          <pre class="sourceCode python"><code>a = "42"
+print(a)
+print(type(a))
+
+b = int(a)
+print(b)
+print(type(b))
+
+c = float(b)
+print(c)
+print(type(c))
+
+d = str(c)
+print(d)
+print(type(d))
+</code></pre>
+שימו לב שכשעושים את זה, הערך ממש יכול להשתנות.
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 25: לולאות</h1>
       <p> יש בפייתון שני סוגים של לולאות ולמדנו קצת על שתהין ועכשיו נדבר קצת יותר לעומק.</p>
       <ol>
         <li>
@@ -287,7 +314,7 @@ if "big" in my_string:
 
           <pre class="sourceCode python"><code>number = 0
 while number < 10000:
-    number = input("Give me a big number: ")
+    number = int(input("Give me a big number: "))
 
 print("Thank you, %s is good enough for me" % number)
 </code></pre>
@@ -315,7 +342,7 @@ for num in numbers:
 
     </section>
     <section class="level1 activity">
-      <h1>שלב 25: בונים משחק</h1>
+      <h1>שלב 26: בונים משחק</h1>
 
       <p>
         זהו, עכשיו בחלק השני של השיעור, אני רוצה שתתחלקו לזוגות או שלשות ותעשו פרוייקטים קטנים עם החומר שלמדנו.
@@ -353,7 +380,7 @@ clear = os.system('cls')
     </section>
 
 רמז: בשביל שבכל פעם שמפעילים את המשחק, נקבל חוייה שונה, כדאי להשתמש בפונקציות שהכרנו מהספרייה <code>random</code> בשביל להגריל מספרים או איברים מרשימה:
-<code>randint</code> ו- <code>choice</code>
+<code>randrange</code> ו- <code>choice</code>
 
 
     </section>
