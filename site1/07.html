@@ -19,7 +19,7 @@
       <div class="title">היכרות ראשונה עם הווב</div>
     </header>
     <section class="level1 activity">
-      <h1>שלב 33: what's the web?</h1>
+      <h1>שלב 33: מהו הווב?</h1>
 
       <ol>
         <li>
@@ -42,6 +42,96 @@
           install flask by typing <code>pip install flask</code> in bash
         </li>
         <li>
+            <pre class="sourceCode python"><code>import flask
+
+app = flask.Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+@app.route('/hello/<name>')
+def hello(name):
+    return("Hello " + name)
+
+@app.route('/bye/<name>')
+def bye(name):
+    return("Bye " + name)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return "404: You're funny, there's no such page", 404
+
+if __name__ == "__main__":
+    app.run(debug=True)
+</code></pre>
+        </li>
+        <li>
+            <pre class="sourceCode python"><code>import flask
+
+app = flask.Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+app.run(debug=True)
+</code></pre>
+        </li>
+        <li>
+            <pre class="sourceCode python"><code>import flask
+
+app = flask.Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+@app.route('/hello/<name>')
+def hello(name):
+    return("Hello " + name)
+
+@app.route('/bye/<name>')
+def bye(name):
+    return("Bye " + name)
+
+@app.route('/number/<number_name>')
+def large_number(number_name):
+  number = int(number_name)
+
+  if number > 100000:
+    return "Thank you, %s is good enough for me" % number
+  else:
+    return "Are you kidding me?! That's way too small"
+
+app.run(debug=True)
+</code></pre>
+        </li>
+        <li>
+            <pre class="sourceCode python"><code>import flask
+
+app = flask.Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+@app.route('/hello/<name>')
+def hello(name):
+    return("Hello " + name)
+
+@app.route('/bye/<name>')
+def bye(name):
+    return("Bye " + name)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return "404: You're funny, there's no such page", 404
+
+if __name__ == "__main__":
+    app.run(debug=True)
+</code></pre>
+          הוספנו דף 404 
         </li>
       </ol>
     </section>
@@ -61,13 +151,17 @@
     </section>
     <section class="level1 activity">
       <h1>שלב : heroku</h1>
-
+      בנינו שרת ווב, אבל בינתיים הוא נגיש רק מהמחשב שלנו, והרי אמרתי שאנחנו הולכים לבנות שרת באינטרנט.
+      אז בשביל זה ניעזר בשירות נחמד שנקרא הרוקו (heroku)
+      שייתן לנו בחינם מקום לשים בו את הקוד שלנו ככה שיהיה זמין לכולם באינטרנט.
       <ol>
         <li>
-          <a href="https://devcenter.heroku.com/articles/getting-started-with-python">heroku</a>
+          בואו נתחיל, תפתחו חשבון בהרוקו <a href="https://id.heroku.com/signup">כאן</a> ואז תתקינו את הכלים שלו מכאן:
+          <a href="https://toolbelt.heroku.com/windows">Set up heroku on windows</a>
 
         </li>
         <li>
+          <a href="https://devcenter.heroku.com/articles/getting-started-with-python">heroku</a>
         </li>
       </ol>
     </section>
