@@ -19,27 +19,119 @@
       <div class="title">היכרות ראשונה עם הווב</div>
     </header>
     <section class="level1 activity">
-      <h1>שלב 33: מהו הווב?</h1>
-
+      <h1>שלב 33: מבוא - מהו הווב?</h1>
+      כמו שסיפרתי בשיעור הקודם, הווב הוא דרך (שבליבה פרוטוקול http) להעביר מסמכים (בעיקר דפי html) דרך רשת האינטרנט.
+      בווב יש שני סוגי משתתפים - שרת ודפדפן.
       <ol>
         <li>
-          url:
-          http://jerusalemsudbury.com/פילוסופיה
+          דפדפן (נקרא גם לקוח) - תוכנה שאנחנו הגולשים משתמשים בה כדי לבקש מסמכים.
         </li>
         <li>
-        http://www.codecademy.com/skills/prototyping/
+          שרת (נקרא גם אפליקציית ווב)- תוכנת מחשב (שלרוב יושבת במחשב אחר שגם הוא נקרא שרת) שאחראיות לספק ללקוחות את דפי הווב שהם מבקשים
+        </li>
+        <li>
+          הדרך שבה דפדפן מבקש מסמך משרת היא ע"י <span dir="ltr">URL (Uniform Resource Locator)</span>.
+          ה-URL היא כתובת שאומרת איזה מסמך הדפדפן רוצה לקבל והיא בנויה משני חלקים עיקריים:
+          כתובת השרת, למשל - <code>en.wikipedia.org</code>
+          וכתובת המסמך, למשל - <code>/wiki/Sudbury_school</code>
+          <br>
+          אז אם נבקש בעזרת הדפדפן את ה-URL הזה
+          <a href="http://en.wikipedia.org/wiki/Sudbury_school">http://en.wikipedia.org/wiki/Sudbury_school</a>,
+          נקבל מהשרת של וויקיפדיה את הדף על בתי הספר של מודל סאדברי.
         </li>
       </ol>
     </section>
     <section class="level1 activity">
-      <h1>שלב 34: introducing flask</h1>
+      <h1>שלב : פונקציות שמחזירות דברים</h1>
       <ol>
         <li>
+          עד עכשיו, יצרנו רק פונקציות שעושות פעולות.
+          אבל בעצם רוב הפונקציות המעניינות לא עושות שום דבר בעצמן, אלא רק מחשבות דברים.
         </li>
         <li>
-          download <a href="https://bootstrap.pypa.io/get-pip.py">get-pip</a>
-          install it by typing <code>python get-pip.py</code> in bash.
-          install flask by typing <code>pip install flask</code> in bash
+          פונקציות אלו משתמשות בפקודה <code>return</code>.
+          הפקודה הזאת מפסיקה את ריצת הפונקציה ומחזירה את הערך ששמים בה.
+          למשל תנסו להריץ את זה:
+          <pre class="sourceCode python"><code>def doubler(num):
+    return num * 2
+    print("No one will ever reach this")
+
+x = 21
+double_x = doubler(x)
+print(double_x)
+</code></pre>
+        </li>
+        <li>
+          שימו לב שבעבר נעזרנו כבר בפונקציות שמחזירות ערכים בעזרת <code>return</code> וביניהן:
+          <code>input</code>, <code>choice</code> ו-<code>randrange</code>
+        </li>
+        <li>
+          הנה שימוש לא מוצלח ב-<code>return</code>, תריצו את התוכנה הבאה, תבינו למה היא לא עובדת ותנסו לתקן אותה:
+          <pre class="sourceCode python"><code>def foo(num):
+
+hmm()?
+</code></pre>
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב : נתקין את פלאסק</h1>
+      בשלב הבא נתחיל לבנות שרת ווב, אבל לפני זה צריך להכין את הכלי שאיתו נעבוד.
+      <ol>
+        <li>
+          אנחנו לא נבנה את השרת מאפס אלא נשתמש בספרייה שנקראת פלאסק (<code>flask</code>).
+          פלאסק היה ספרייה מסוג שנקרא פריימוורק (Web Framework).
+          המטרה של פריימורק היא לספק למתכנת את כל הכלים שקשור לתקשורת עם הלקוחות,
+          כך שלמתכנת נשאר רק לבנות את התוכן שיוחזר עבור כל URL.
+        </li>
+        <li>
+          בפייתון משתמשים בכלי שנקרא פיפ (<code>pip</code>) כדי להתקין ספריות מהאינטרנט (כלומר, ספריות נוספות שלא קיבלנו יחד עם ההתקנה של פייתון).
+          תנסו לכתוב ב-bash <code>pip</code> כדי לראות עם פיפ כבר מותקן אצלכם, ואם כן, אתם יכולים לדלג לסעיף הבא.
+          אם אין לכם את פיפ, תורידו את הקובץ הבא <a href="https://bootstrap.pypa.io/get-pip.py">get-pip</a> ואז תתקינו אותו בעזרת הפקודה הבאה ב-bash (בתיקיה שאליה הורדתם את הקובץ):
+          <pre class="sourceCode bash"><code>python get-pip.py
+</code></pre>
+        </li>
+        <li>
+          ועכשיו שיש לכם את פיפ, אתם יכולים להתקין את פלאסק בעזרת הפקודה הבאה ב-bash
+          <pre class="sourceCode bash"><code>pip install flask
+</code></pre>
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב : תוכנה ראשונה בפלאסק</h1>
+      עכשיו אנחנו מוכנים להתחיל לבנות שרת ווב פשוט וכך להכיר את פלאסק.
+      <ol>
+
+        <li>
+          שרתי ווב הם דומים קצת לתוכנות שורת הפקודה שהכנו בשיעור 4,
+          אבל הבדל עיקרי הוא שאנחנו לא צריכים לעשות לולאה כמו שעשינו אז,
+          אלא פלאסק דואג בשבילנו לכל זה, ואנחנו רק צריכים לכתוב את הפעולות אשר יקרו עבור כל URL.
+        </li>
+        <li>
+          ככה נראה שרת פשוט בפלאסק שאומר שלום לעולם:
+          <pre class="sourceCode python"><code>import flask
+
+app = flask.Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+app.run()
+</code></pre>
+          תריצו את הקוד הזה ותיכנו בדפדפן ל- <a href="http://127.0.0.1:5000">http://127.0.0.1:5000/</a> (הכתובת 127.0.0.1 זאת תמיד הכתובת של המחשב המקומי שלכם ו-5000 זה הפורט שפלאסק מעדיף).
+          שימו לב שפלאסק יריץ את השרת בלולרה אינסופית עד שתהרגו את התוכנה בעזרת Ctrl+C.
+        </li>
+        <li>
+          בואו ננסה להבין מה מכיל הקוד שכתבנו.
+          השורה <code>app = flask.Flask(__name__)</code> מגדירה אפליקציית פלאסק חדשה, כאשר המשתמה המיוחד <code>__name__</code> מכיל את שם הקובץ שאנחנו בתוכו.
+          <br>
+          דבר אחר שלא ראינו עד כה הוא השורה שמתחילה בשטרודל - <code>@app.route('/')</code>.
+          השורה הזאת נקראת דקורטור (כי היא מקשטמ פונקציה) והיא דרך שבא אנחנו אומרים לפלאסק מה לעשות עם הפונקציה מתחת.
+          במקרה הזה, אנחנו אומרים לפלאסק שהפונקציה הזאת אחראית לשרת את ה-URL <code>/</code> (שורש האתר).
+          <br>
+          השורה האחרונה <code>app.run()</code> אחראית פשוט להריץ את השרת.
         </li>
         <li>
             <pre class="sourceCode python"><code>import flask
@@ -52,48 +144,11 @@ def hello_world():
 
 @app.route('/hello/<name>')
 def hello(name):
-    return("Hello " + name)
+    return("Hello <b>%s</b>" % name)
 
 @app.route('/bye/<name>')
 def bye(name):
-    return("Bye " + name)
-
-@app.errorhandler(404)
-def page_not_found(error):
-    return "404: You're funny, there's no such page", 404
-
-if __name__ == "__main__":
-    app.run(debug=True)
-</code></pre>
-        </li>
-        <li>
-            <pre class="sourceCode python"><code>import flask
-
-app = flask.Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-app.run(debug=True)
-</code></pre>
-        </li>
-        <li>
-            <pre class="sourceCode python"><code>import flask
-
-app = flask.Flask(__name__)
-
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
-
-@app.route('/hello/<name>')
-def hello(name):
-    return("Hello " + name)
-
-@app.route('/bye/<name>')
-def bye(name):
-    return("Bye " + name)
+    return("Bye <i>%s</i>" % name)
 
 @app.route('/number/<number_name>')
 def large_number(number_name):
@@ -118,11 +173,11 @@ def hello_world():
 
 @app.route('/hello/<name>')
 def hello(name):
-    return("Hello " + name)
+    return("Hello <b>%s</b>" % name)
 
 @app.route('/bye/<name>')
 def bye(name):
-    return("Bye " + name)
+    return("Bye <i>%s</i>" % name)
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -131,21 +186,18 @@ def page_not_found(error):
 if __name__ == "__main__":
     app.run(debug=True)
 </code></pre>
-          הוספנו דף 404 
+          הוספנו דף 404
         </li>
       </ol>
     </section>
     <section class="level1 activity">
-      <h1>שלב : prerequisites</h1>
+      <h1>שלב : קבצי html</h1>
       <ol>
         <li>
-          function return?
+          קבצים סטטיים
         </li>
         <li>
-          remember how in lesson 4 we had to do a loop to keep going?
-          well this time, flask does that for us and we only need to write the inner code
-        </li>
-        <li>
+          טמפלייטים?
         </li>
       </ol>
     </section>
@@ -165,6 +217,7 @@ if __name__ == "__main__":
         </li>
       </ol>
     </section>
+    <p>הערה: <a href="http://flask.pocoo.org/">אם אתם מעדיפים לרוץ קצת קדימה בעצמכם, כאן תוכלו למצוא את הדוקומנטציה המלאה של ספריית פלאסק</a></p>
   </body>
 </html>
 
