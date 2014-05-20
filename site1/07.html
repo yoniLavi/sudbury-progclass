@@ -33,7 +33,7 @@
           הדרך שבה דפדפן מבקש מסמך משרת היא ע"י <span dir="ltr">URL (Uniform Resource Locator)</span>.
           ה-URL היא כתובת שאומרת איזה מסמך הדפדפן רוצה לקבל והיא בנויה משני חלקים עיקריים:
           כתובת השרת, למשל - <code>en.wikipedia.org</code>
-          וכתובת המסמך, למשל - <code>/wiki/Sudbury_school</code>
+          וכתובת המסמך, למשל - <code dir="ltr">/wiki/Sudbury_school</code>
           <br>
           אז אם נבקש בעזרת הדפדפן את ה-URL הזה
           <a href="http://en.wikipedia.org/wiki/Sudbury_school">http://en.wikipedia.org/wiki/Sudbury_school</a>,
@@ -189,13 +189,13 @@ app = flask.Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/hello/<name>')
+@app.route('/hello/&lt;name&gt;')
 def hello(name):
     return "Hello there %s" % name
 
 app.run(debug=True)
 </code></pre>
-          שינינו את הדקורטור כך שיקבל את כל הכתובות מהצורה <code>/hello/<name></code>,
+          שינינו את הדקורטור כך שיקבל את כל הכתובות מהצורה <code>/hello/&lt;name&gt;</code>,
           כלומר שיכול להופיע אחרי hello כל שם.
           אז בואו תנסו לגלוש ל-<a href="http://127.0.0.1:5000/hello/Yoni">http://127.0.0.1:5000/hello/Yoni</a>.
           מה שקרה פה זה שהפרמטר <code>name</code> נכנס מה-URL לפונקציה שלנו ואז להודעה שמוחזרת לדפדפן.
@@ -224,11 +224,11 @@ app = flask.Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/hello/<name>')
+@app.route('/hello/&lt;name&gt;')
 def hello(name):
     return "Hello there &lt;b&gt;%s&lt;/b&gt;" % name
 
-@app.route('/bye/<name>')
+@app.route('/bye/&lt;name&gt;')
 def bye(name):
     return "Goodbye &lt;i&gt;%s&lt;/i&gt;" % name
 
@@ -253,11 +253,11 @@ app = flask.Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/hello/<name>')
+@app.route('/hello/&lt;name&gt;')
 def hello(name):
     return "Hello there &lt;b&gt;%s&lt;/b&gt;" % name
 
-@app.route('/bye/<name>')
+@app.route('/bye/&lt;name&gt;')
 def bye(name):
     return "Goodbye &lt;i&gt;%s&lt;/i&gt;" % name
 
@@ -294,11 +294,11 @@ app = flask.Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/hello/<name>')
+@app.route('/hello/&lt;name&gt;')
 def hello(name):
     return "Hello there &lt;b&gt;%s&lt;/b&gt;" % name
 
-@app.route('/bye/<name>')
+@app.route('/bye/&lt;name&gt;')
 def bye(name):
     return "Goodbye &lt;i&gt;%s&lt;/i&gt;" % name
 
@@ -369,11 +369,11 @@ app = flask.Flask(__name__)
 def hello_world():
     return 'Hello World!'
 
-@app.route('/hello/<name>')
+@app.route('/hello/&lt;name&gt;')
 def hello(name):
     return "Hello there &lt;b&gt;%s&lt;/b&gt;" % name
 
-@app.route('/bye/<name>')
+@app.route('/bye/&lt;name&gt;')
 def bye(name):
     return "Goodbye &lt;i&gt;%s&lt;/i&gt;" % name
 
