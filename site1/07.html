@@ -393,7 +393,7 @@ if __name__ == "__main__":
           במקרה הזה, אנחנו מבקשים ממנו לפתוח את הקובץ <code>helloflask</code> (לא צריך לכתוב לו את הסיומת .py) ובתוכו לקחת את האפליקציה <code>app</code>.
         </li>
         <li>
-          כמו-כן, תיצרו קובץ בשם <code>requirements.txt</code> באותה תיקיה ושימו בו את השורה הבאה:
+          כמו-כן, תיצרו קובץ בשם <code>requirements.txt</code> באותה תיקיה ושימו בו את השורות הבאות:
           <pre class="sourceCode"><code>Flask==0.9
 Jinja2==2.6
 Werkzeug==0.8.3
@@ -402,9 +402,16 @@ gunicorn==0.17.2
           הקובץ הזה מספר להרוקו איזה ספריות נוספות (ובאיזה גרסאות) הוא צריך בשביל להריץ את השרת.
         </li>
         <li>
+          אה, וכמעט שכחנו, רצוי גם ליצור קובץ בשם <code>runtime.txt</code> באותה תיקיה ולשים בו את השורה הבאה:
+          <pre class="sourceCode"><code>python-3.4.0
+</code></pre>
+          הקובץ הזה מגדיר את הגרסא של פייתון שהרוקו יריץ בשבילכם.
+          יש סיכוי שהוא יינחש בעצמו גם בלי הקובץ הזה, אבל יש סיכוי שהוא יטעה.
+        </li>
+        <li>
           בואו נוסיף לגיט את כל השינויים שעשינו.
           תכתבו ב-bash את הפקודות הבאות:
-          <pre class="sourceCode bash"><code>git add helloflask.py Procfile requirements.txt
+          <pre class="sourceCode bash"><code>git add *
 git commit -m "prepared for heroku"
 </code></pre>
         </li>
