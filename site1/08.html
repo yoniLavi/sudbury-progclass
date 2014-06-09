@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="generator"
+    content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <title>Lesson 8 - Making our web app more eloquent</title>
+    <link rel="stylesheet" href="static/css/main.css" />
+    <link rel="stylesheet" href="static/css/lesson.css" />
+
+    <link rel="stylesheet" href="static/highlightjs/styles/default.css">
+    <script src="static/highlightjs/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </head>
+  <body>
+    <header>
+      <div class="level">8</div>
+      <div class="title">נעשה את השרת שלנו יותר מעניין</div>
+    </header>
+    <section class="level1 activity">
+      <h1>שלב 40: מה הולך להיות לנו</h1>
+      <p>
+        עוד מעט תיגמר השנה ונשארו לנו רק עוד שיעורים בודדים.
+        הנושא הנוכחי שלנו, בניית שרת (אפליקציית ווב)
+        בפייתון הוא גם הנושא האחרון שלנו ובשביל לתת לכם קצת מוטיבציה,
+        רציתי להראות לכם דוגמא לסוג האתר שתוכלו לבנות בעזרת החומר שעוד נשאר לנו:
+      </p>
+      <p>תנסו לחשוב בעצמכם כיצד בונים אתר כזה ועל איזה רכיבים בו נשאר לנו עוד ללמוד</p>
+      <a href="http://helloheroku.lavi.fm/">Guess Me</a>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 41: איפה לשים את ה-html</h1>
+      <ol>
+        <li>
+          עד עכשיו שמנו קטעי html ממש בתוך קוד הפייתון שלנו.
+          זה היה סביר כי הם היו די קטנים,
+          אבל זה לא נראה טוב ודי מעצבן לתחזק את זה ככה.
+          בשלב הזה נלמד על שתי דרכים חכמות יותר לנהל את הקבצים שלנו.
+        </li>
+        <li>
+          הדרך הפשוטה ביותר לשלב html בפלאסק היא קבצים סטטיים.
+          במקרה הזה מדובר בקבצים שהם תמיד אותו דבר ואפשר פשוט לגשת אליהם מהדפדפן מבלי שיעברו טיפול כלשהו בפייתון.
+          את הקבצים האלו נשים בתיקיה בשם <code>static</code> וזה פשוט יעבוד.
+          למשל, תיצרו את הקובץ <code>hello.html</code> בתוך התיקיה <code>static</code> עם התוכן הבא:
+          <pre class="sourceCode html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hi there&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello, I'm a static file.&lt;/p&gt;
+  &lt;p&gt;Here's a picture of a mouse playing a sax&lt;/p&gt;
+  &lt;img src=&quot;http://www.desicomments.com/dc3/06/266493/266493.jpg&quot;&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+          ואז תריצו שרת פלאסק (לא משנה מה עוד יש בו, אפשר פשוט לקחת את הקובץ משבוע שעבר),
+          אז תוכלו לגשת לקובץ שיצרתם ב-URL <code>127.0.0.1/static/hello.html</code>.
+          כמו-כן, תוכלו לקשר לעמוד הזה מעמודים אחרים ע"י <code>&lt;a href=&quot;/static/hello.html&quot;&gt;hello>&lt;/a&gt;</code>
+          <br>
+          באותו אופן, תוכלו לשים בתיקייה הסטטית גם קבצי css, js, תמונות וכל קובץ אחר שבא לכם.
+        </li>
+        <li>
+          קבצים סטטיים זה נחמד, אבל ברוב המקרים, אנחנו נרצה להתאים את ה-html כך שיהיה שונה בכל פעם.
+          למשל, נרצה אולי להציג בעמוד תכנים שרלוונטיים רק למשתמש הנוכחי.
+          בשביל זה, נצטרך להשתמש בקבצים מיוחדים שנקראים טמפלייטים (template - כלומר, תבניות).
+        </li>
+        <li>
+          הטמפלייטים הם קבצי html שיש בהם אזורים מיוחדים שיכולים להתמלא ע"י משתנים מפייתון,
+          בצורה דומה לסימני ה-<code>%s</code> שבהם השתמשנו בעבר.
+          <br>
+          תצרו את הקובץ <code>hello_you.html</code> בתוך התיקיה <code>templates</code>:
+          <pre class="sourceCode html"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;Hi there&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;Hello, {{username}}.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+          הטקסט שבתוך הסוגריים המסולסלים הכפולים הוא משתנה שנוכל "להזריק" דרכו לתוך הטמפלייט שם שונה בכל פעם.
+        </li>
+        <li>
+          כדי להשתמש בטמפלייט, תוסיפו את הפונקציה הבאה לשרת הפלאסק שלכם:
+          <pre class="sourceCode python"><code>@app.route('/hello_there/&lt;name&gt;')
+def hello_there(name):
+    return flask.render_template('hello_you.html', username=name)
+
+app.run(debug=True)
+</code></pre>
+          הפונקציה <code>render_template</code> מקבלת: את שם הטמפלייט (בתיקייה templates) ואת המשתנים שאנחנו רוצים להזריק (את שם המשתנה הטמפלייט ואז את הערך שלו מתוך פייתון).
+          <br>
+          תריצו את השרת ותנסו לגשת לכתובת <code>127.0.0.1/hello_there/Yoni</code>.
+          <br>
+          תנסו לראות מה יקרה אם תשנו את הפוקציה ולא תעבירו את הפרמטר <code>username</code>?
+        </li>
+        <li>
+          טמפלייטים יודעים לעשות עוד הרבה דברים מגניבים שנראה בשבוע הבא,
+          אבל בינתיים, תנסו לראות איזה עמודים אתם יכולים לעשות בעזרת משתנים פשוטים בלבד.
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 42: מילונים</h1>
+      <ol>
+        <li>
+          נעזוב עכשיו לרגע את פלאסק ונדבר על סוג חדש של אובייקט בשפת פייתון - מילון (dictionary או dict).
+          בשיעורים הקודמים, ראינו שאפשר לשים הרבה אובייקטים של פייתון בתוך אובייקט אחד על-ידי שימוש ברשימה (למשל, <code>colors = ["red", "green", "flamingo_pink"]</code>.
+          <br>
+          מילון הוא עוד דרך שימושית מאוד שפייתון מציע לנו כדי לארוז הרבה אובייקטים למבנה אחד.
+        </li>
+        <li>
+          במקרה פשוט, בואו נניח שאנחנו רוצים לתרגם מילים מסויימות מאנגלית לספרדית.
+          תריצו את הקוד הבא ותראו מה קורה:
+          <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
+
+print(spanish["two"])
+</code></pre>
+          מילון הוא כמו פונקציה קטנה והוא מורכב מזוגות של מפתח וערך (key: value).
+          אחרי שאנחנו יוצרים מילון, אנחנו יכולים לבקש ממנו לתרגם לנו כל מפתח לערך שלו (כמו שברשימות ניגשנו לאיבר לפי המקום שלו ברשימה).
+        </li>
+        <li>
+          זה אומר שתמיד במילון יהיה רק מפתח אחד בכל שם, אבל אין בעיה שלמפתחות שונים יהיו את אותם הערכים, למשל:
+          <pre class="sourceCode python"><code>student_grades = {"Danny": 80, "Michal": 100, "Benny": 80}
+
+print(student_grades["Benny"])
+</code></pre>
+        </li>
+        <li>
+          אחרי שיש לנו מילון, אנחנו יכולים להוסיף ולשנות ערכים, מתי שבא לנו:
+          <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
+
+spanish["yes"] = "si"
+spanish["red"] = "rojo"
+spanish["black"] = "negro"
+spanish["green"] = "negro"
+# oops
+spanish["green"] = "verde"
+
+print(spanish["two"])
+print(spanish["green"])
+
+print(spanish)
+</code></pre>
+        </li>
+        <li>
+          בעיקרון, אם תנסו לגשת במילון למפתח שאינו קיים, תקבלו שגיאה:
+          <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
+
+print(spanish["four"])
+</code></pre>
+          אבל, אפשר להשתמש בפונקציה <code>get</code> כדי לקבל ערך ברירת עם המפתח שחיפשנו לא קיים:
+          <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
+
+print(spanish.get("four", "I don't know this word"))
+</code></pre>
+          או לחילופין, אפשר פשוט לבדוק האם המפתח קיים:
+          <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
+
+key = "four"
+if key in spanish:
+  print(spanish[key])
+else:
+  print("I don't know how to translate '%s'" % key)
+</code></pre>
+        </li>
+        <li>
+          אפשר גם למחוק ערכים מסויימים ממילון, ואפילו לרוקן את כולו:
+          <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
+
+print(spanish)
+
+spanish.pop("two")
+print(spanish)
+
+spanish.clear()
+print(spanish)
+</code></pre>
+        </li>
+        <li>
+          מילונים הם מאוד שימושיים ואתם תראו שבעזרת שילובים של רשימות ומילונים אפשר לייצג כל גוף מידע שהוא.
+        </li>
+        <li>
+          תשחקו קצת עם מילונים ואז תנסו כתרגיל לעשות תוכנה שכזאת -
+          תקלטו הוראות מהמשתמש עם הפונקציה <code>input</code> ואז תגיבו לו בעזרת מילון שהכנתם מראש.
+          הרעיון הוא שתבנו תוכנה מאוד דומה לאלו שעשינו בשיעור 4, אבל יותר בקלות.
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב 43: </h1>
+      <ol>
+        <li>
+          בפלאסק יש מילון מסויים שמעניין אותנו במיוחד ונקרא session.
+          <br>
+          דפדפנים נותנים לשרת לשמור חתיכות מידע קטנות אצל המשתמש שנקראות עוגיות (cookies).
+          session זה סוג מיוחד של עוגיה שהמשתמש לא יכול לגשת עליה (כי היא מוצפנת עם סיסמא) ובעזרתו אנחנו יכולים לזהות את המשתמש ולשמור עליו מידע שהוא לא יוכל לגעת בו ישירות.
+        </li>
+        <li>
+          הנה הדוגמא הבסיסית לשימוש ב-session מהאתר הרשמי של פלאסק:
+
+          <pre class="sourceCode python"><code>from flask import Flask, session, redirect, url_for, escape, request
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    if 'username' in session:
+        return 'Logged in as %s' % escape(session['username'])
+    return 'You are not logged in'
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session['username'] = request.form['username']
+        return redirect(url_for('index'))
+    return '''
+        &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+            &lt;p&gt;&lt;input type=text name=username&gt;
+            &lt;p&gt;&lt;input type=submit value=Login&gt;
+        &lt;/form&gt;
+    '''
+
+@app.route('/logout')
+def logout():
+    # remove the username from the session if it's there
+    session.pop('username', None)
+    return redirect(url_for('index'))
+
+# set the secret key.  keep this really secret:
+app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+</code></pre>
+          חוץ מ-session, יש פה עוד משהו שלא הרכנו עד עכשיו - טפסים (forms) ב-html והדרכים להעביר מידע בטופס לשרת (במקרה הזה - POST).
+          אל תדאגו, נדבר על זה עוד מעט, אבל בינתיים תנסו להריץ את השרת הזה ותנסו להבין בעצמכם מה קורה.
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב : </h1>
+      <ol>
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+      </ol>
+    </section>
+    <section class="level1 activity">
+      <h1>שלב : </h1>
+      <ol>
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+        </li>
+<!--         <li>https://github.com/yoniYalovitsky/guess_me
+        </li> -->
+      </ol>
+    </section>
+    <p>הערה: <a href="http://flask.pocoo.org/">אם אתם מעדיפים לרוץ קצת קדימה בעצמכם, כאן תוכלו למצוא את הדוקומנטציה המלאה של ספריית פלאסק</a>.
+    בנוסף, <a href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">כאן</a> <a href="http://jinja.pocoo.org/docs/">וכאן</a> תוכלו למצוא מידע נוסף על טמפלייטים בפלאסק.</p>
+
+  </body>
+</html>
+
