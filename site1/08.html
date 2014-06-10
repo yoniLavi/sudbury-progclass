@@ -26,8 +26,8 @@
         בפייתון הוא גם הנושא האחרון שלנו ובשביל לתת לכם קצת מוטיבציה,
         רציתי להראות לכם דוגמא לסוג האתר שתוכלו לבנות בעזרת החומר שעוד נשאר לנו:
       </p>
-      <p>תנסו לחשוב בעצמכם כיצד בונים אתר כזה ועל איזה רכיבים בו נשאר לנו עוד ללמוד</p>
-      <a href="http://helloheroku.lavi.fm/">Guess Me</a>
+      <h2><a href="http://helloheroku.lavi.fm/" target="_blank">Guess Me</a></h2>
+      <p>תנסו לחשוב בעצמכם כיצד בונים אתר כזה ועל איזה רכיבים בו נשאר לנו עוד ללמוד.</p>
     </section>
     <section class="level1 activity">
       <h1>שלב 41: איפה לשים את ה-html</h1>
@@ -108,7 +108,7 @@ app.run(debug=True)
       <ol>
         <li>
           נעזוב עכשיו לרגע את פלאסק ונדבר על סוג חדש של אובייקט בשפת פייתון - מילון (dictionary או dict).
-          בשיעורים הקודמים, ראינו שאפשר לשים הרבה אובייקטים של פייתון בתוך אובייקט אחד על-ידי שימוש ברשימה (למשל, <code>colors = ["red", "green", "flamingo_pink"]</code>.
+          בשיעורים הקודמים, ראינו שאפשר לשים הרבה אובייקטים של פייתון בתוך אובייקט אחד על-ידי שימוש ברשימה למשל: <code dir="ltr">colors = ["red", "green", "flamingo_pink"]</code>.
           <br>
           מילון הוא עוד דרך שימושית מאוד שפייתון מציע לנו כדי לארוז הרבה אובייקטים למבנה אחד.
         </li>
@@ -152,7 +152,7 @@ print(spanish)
 
 print(spanish["four"])
 </code></pre>
-          אבל, אפשר להשתמש בפונקציה <code>get</code> כדי לקבל ערך ברירת עם המפתח שחיפשנו לא קיים:
+          אבל, אפשר להשתמש בפונקציה <code>get</code> כדי לקבל ערך ברירת מחדל אם המפתח שחיפשנו לא קיים:
           <pre class="sourceCode python"><code>spanish = {"one": "uno", "two": "dos", "three": "tres"}
 
 print(spanish.get("four", "I don't know this word"))
@@ -197,10 +197,10 @@ print(spanish)
           בפלאסק יש מילון מסויים שמעניין אותנו במיוחד ונקרא session.
           <br>
           דפדפנים נותנים לשרת לשמור חתיכות מידע קטנות אצל המשתמש שנקראות עוגיות (cookies).
-          session זה סוג מיוחד של עוגיה שהמשתמש לא יכול לגשת עליה (כי היא מוצפנת עם סיסמא) ובעזרתו אנחנו יכולים לזהות את המשתמש ולשמור עליו מידע שהוא לא יוכל לגעת בו ישירות.
+          המילון session הוא סוג מיוחד של עוגיה שהמשתמש לא יכול לגשת אליה (כי היא מוצפנת עם סיסמא) ובעזרתו אנחנו יכולים לזהות את המשתמש ולשמור עליו מידע שהוא לא יוכל לגעת בו ישירות.
         </li>
         <li>
-          הנה הדוגמא הבסיסית לשימוש ב-session מהאתר הרשמי של פלאסק:
+          הנה הדוגמא הבסיסית לשימוש ב-session מהאתר הרשמי של פלאסק (קצת פישטתי):
 
           <pre class="sourceCode python"><code>from flask import Flask, session, redirect, url_for, escape, request
 
@@ -208,21 +208,30 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    if 'username' in session:
-        return 'Logged in as %s' % escape(session['username'])
-    return 'You are not logged in'
+    #Yes, in real life, you'd use templates for these
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
+    if 'username' in session:
+        return '''Logged in as %s.
+                  &lt;a href=&quot;%s&quot;&gt;Log out&lt;/a&gt;' % (
+                escape(session['username']),
+                url_for('logout'))
+
     return '''
-        &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+        &lt;h2&gt;Hi, what's your name?&lt;/h2&gt;
+        &lt;form action=&quot;/login&quot; method=&quot;get&quot;&gt;
             &lt;p&gt;&lt;input type=text name=username&gt;
             &lt;p&gt;&lt;input type=submit value=Login&gt;
         &lt;/form&gt;
     '''
+
+@app.route('/login')
+def login():
+    username = request.args.get(&quot;username&quot;)
+    if username:
+      session['username'] = username
+
+    return redirect(url_for('index'))
+
 
 @app.route('/logout')
 def logout():
@@ -231,39 +240,26 @@ def logout():
     return redirect(url_for('index'))
 
 # set the secret key.  keep this really secret:
-app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.secret_key = 'AZr98j/3yX R~XHH!amN]LWX/,?RT'
+
+if __name__ == &quot;__main__&quot;:
+    app.run(debug=True)
 </code></pre>
-          חוץ מ-session, יש פה עוד משהו שלא הרכנו עד עכשיו - טפסים (forms) ב-html והדרכים להעביר מידע בטופס לשרת (במקרה הזה - POST).
-          אל תדאגו, נדבר על זה עוד מעט, אבל בינתיים תנסו להריץ את השרת הזה ותנסו להבין בעצמכם מה קורה.
+          חוץ מ-session, יש פה עוד משהו שלא הכרנו עד עכשיו - טפסים (forms) ב-html והדרכים להעביר מידע בטופס לשרת (במקרה הזה פרמטר GET).
+          אל תדאגו, נדבר על זה עוד בהמשך, אבל בינתיים תנסו להריץ את השרת הזה ותנסו להבין בעצמכם מה קורה.
+        </li>
+        <li>
+          שימו לב גם ל-<code>url_for</code> פונקציית עזר שיוצרת את ה-URL עבור פונקציה כלשהי אצלכם
+          והפונקציה <code>redirect</code> מעבירה את הדפדפן לעמוד של אותה פונקציה.
+        </li>
+        <li>
+          תנסו לראות אם אתם יכולים לעשות משהו מגניב בעצמכם עם השרת הזה.
+          מה אפשר להציע למשתמש אחרי הכניסה לאתר?
+          האם אפשר אולי לשמור ב-session עוד דברים מעניינים?
         </li>
       </ol>
     </section>
-    <section class="level1 activity">
-      <h1>שלב : </h1>
-      <ol>
-        <li>
-        </li>
-        <li>
-        </li>
-        <li>
-        </li>
-        <li>
-        </li>
-      </ol>
-    </section>
-    <section class="level1 activity">
-      <h1>שלב : </h1>
-      <ol>
-        <li>
-        </li>
-        <li>
-        </li>
-        <li>
-        </li>
-<!--         <li>https://github.com/yoniYalovitsky/guess_me
-        </li> -->
-      </ol>
-    </section>
+<!-- https://github.com/yoniYalovitsky/guess_me -->
     <p>הערה: <a href="http://flask.pocoo.org/">אם אתם מעדיפים לרוץ קצת קדימה בעצמכם, כאן תוכלו למצוא את הדוקומנטציה המלאה של ספריית פלאסק</a>.
     בנוסף, <a href="http://flask.pocoo.org/docs/quickstart/#rendering-templates">כאן</a> <a href="http://jinja.pocoo.org/docs/">וכאן</a> תוכלו למצוא מידע נוסף על טמפלייטים בפלאסק.</p>
 
